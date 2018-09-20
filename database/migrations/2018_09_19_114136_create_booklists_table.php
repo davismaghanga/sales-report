@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserTypeToUsersTable extends Migration
+class CreateBooklistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddUserTypeToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->smallInteger('user_type')->default(0);
+        Schema::create('booklists', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('filename');
+            $table->integer('institution_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddUserTypeToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('booklists');
     }
 }

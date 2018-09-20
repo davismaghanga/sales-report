@@ -35,18 +35,44 @@
                                 <div class="profile_img">
                                     <div id="crop-avatar">
                                         <!-- Current avatar -->
-                                        <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                        <img class="img-responsive avatar-view" src="images/user/profile-pictures/{{$user->avatar}}" alt="Avatar" title="Change the avatar">
                                     </div>
                                 </div>
                                 <h3>{{Auth::user()->name}}</h3>
 
                                 <ul class="list-unstyled user_data">
-                                    <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                                    <li><i class="fa fa-map-marker user-profile-icon"></i> {{$user->location}}
                                     </li>
 
                                     <li>
-                                        <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                                        <i class="fa fa-phone user-profile-icon"></i> {{$user->contacts}}
                                     </li>
+
+                                    <li>
+                                        {{--<label for="regional"> </label>--}}
+                                        <i class="fa fa-globe user-profile-icon"></i>
+                                        <strong> Sub-region: </strong>
+                                        @if($user->subregion_id!=null)
+                                            {{$user->subregion->subregion}}
+                                        @else
+                                            <i>Not Specified</i>
+                                        @endif
+                                    </li>
+
+                                    <li>
+                                        {{--<label for="regional_manager"> </label>--}}
+                                        <i class="fa fa-globe user-profile-icon"></i>
+                                        <strong> Region: </strong>
+                                        @if($user->region_id!=null)
+                                            {{$user->region->region}}
+                                        @else
+                                            <i>Not Specified</i>
+                                        @endif
+                                    </li>
+
+
+
+
 
                                     <li class="m-top-xs">
                                         <i class="fa fa-external-link user-profile-icon"></i>

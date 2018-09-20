@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneNumberToRegManagersTable extends Migration
+class CreateSubregionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddPhoneNumberToRegManagersTable extends Migration
      */
     public function up()
     {
-        Schema::table('regional_managers', function (Blueprint $table) {
-            $table->string('phoneNumber');
+        Schema::create('subregions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('subregion');
+            $table->integer('region_id')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddPhoneNumberToRegManagersTable extends Migration
      */
     public function down()
     {
-        Schema::table('regional_managers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('subregions');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRegionalManagersTable extends Migration
+class CreateContactPeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateRegionalManagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('regional_managers', function (Blueprint $table) {
+        Schema::create('contact_people', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('phoneNumber');
-            $table->string('region_id');
+            $table->string('designation');
+            $table->string('phone');
+            $table->string('email');
+            $table->integer('institution_id');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateRegionalManagersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regional_managers');
+        Schema::dropIfExists('contact_people');
     }
 }

@@ -1,13 +1,14 @@
 @extends('layouts.user.master')
 
 @section('content')
+
     <div class="right_col" role="main">
 
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Form Design <small>different form elements</small></h2>
+                    <h2>Update your profile <small>Tell us more about yourself</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -29,38 +30,66 @@
 
                 <div class="x_content ">
                     <br />
-                    <form class="form-horizontal form-label-left input_mask">
+                    <form enctype="multipart/form-data" class="form-horizontal form-label-left input_mask" method="post" action="{{url('edit-profile/post')}}">
+                        {{csrf_field()}}
 
-                        <div class=" form-group has-feedback">
-                            <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Your Name" name="name">
-                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+
+                        {{-- weka pp hapa--}}
+                        <div class=" form-group">
+                            <input type="file" class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar">
+                            {{--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--}}
                         </div>
 
 
                         <div class=" form-group has-feedback">
-                            <input type="text" class="form-control" id="inputSuccess5" placeholder="Phone">
+                            <input type="text" class="form-control" id="inputSuccess5"  required="required" placeholder="Phone" data-inputmask="'mask' : '(999) 999-9999'" name="contacts" value="{{old('contacts')}}">
                             <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                         </div>
 
+                        <div class=" form-group has-feedback">
+                            <input type="text" class="form-control"  required="required" id="inputSuccess5" placeholder="Sub-County" name="location" value="{{old('location')}}">
+                            <span class="fa fa-location-arrow form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+
+
+
                         <div class="form-group ">
 
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" placeholder="Date of birth">
+                            <div class="col-md-9 col-sm-9 col-xs-12 input-group date"  >
+
+                                <div class="form-group">
+                                    <div class='input-group date' id='mpyDatepicker'>
+                                        <input type='text' name="dob" id='myDatepickper' required="required" class="form-control" placeholder="Date of birth"/>
+                                        <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned supervisor</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Region</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select class="select2_single form-control" tabindex="-1">
-                                    <option></option>
-                                    <option value="Beatrice">Beatrice Wambui</option>
-                                    <option value="Irene">Irene Sadera</option>
-                                    <option value="Abiud">Abiud Nyaga</option>
-                                    <option value="NV">Josiah Obiero</option>
-                                    <option value="OR">Dennis </option>
+                                <select type="text" class="select2_single form-control " required tabindex="-1" name="region_id">
+                                    @foreach($regions as $region)
+
+                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Sub-region</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select type="text" class="select2_single form-control " required tabindex="-1" name="subregion_id">
+                                    @foreach($subregions as $subregion)
+
+                                        <option value="{{$subregion->id}}">{{$subregion->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
