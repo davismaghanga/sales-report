@@ -34,15 +34,30 @@
                             {{csrf_field()}}
 
                             <div class=" form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Enter Manager's name" name="name">
+                                <input type="text" required="required" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Enter Manager's name" name="name">
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
 
 
                             <div class=" form-group has-feedback">
-                                <input type="text" class="form-control" id="inputSuccess5" placeholder="Phone Number" name="phoneNumber" data-inputmask="'mask' : '(999) 999-9999'">
+                                <input type="text" class="form-control" id="inputSuccess5" placeholder="Phone Number"  required="required"    name="phoneNumber" data-inputmask="'mask' : '(999) 999-9999'">
                                 <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                             </div>
+                            <div class=" form-group has-feedback">
+
+                                <select type="text" class="form-control" required="required" id="inputSuccess5" placeholder="Enter Sub Region" name="region_id" >
+                                    @foreach($regions as $region)
+
+                                        {{--we loop through all the regions for every region we create a selectable option--}}
+                                        {{--we check for old input just incase you are editing with the same form -This marks the last used option as "selected"--}}
+                                        {{--between the option tags we display the region name--}}
+                                        <option value="{{$region->id}}" {{(old('region_id') == $region->id)?"selected":""}}>{{$region->region}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">

@@ -20,10 +20,14 @@ class CreateInstitutionsTable extends Migration
             $table->string('activity');
             $table->string('upcoming');
             $table->string('outcome');
-            $table->float('orders');
+            $table->float('orders')->nullable();
             $table->integer('region_id');
             $table->integer('subregion_id');
-            $table->integer('booklist_id');
+            $table->string('contactName');
+            $table->string('contactEmail');
+            $table->string('contactDesignation');
+            $table->string('contactNumber');
+//            $table->integer('booklist_id');
             $table->timestamps();
         });
     }

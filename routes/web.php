@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +21,66 @@ Route::get('/profile','UserController@profile');
 Route::get('/edit-profile','UserController@editprofile');
 Route::post('/edit-profile/post','UserController@updateprofile');
 
-    //the route below is for posting the coordinates of an application user, research more on this
+Route::get('mainform','UserController@mainform');
+Route::post('mainform/post','UserController@fill');
+
+//remember to prefix all the routes and add middleware
+Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
+
+//    Route::get('/home','AdminController@index');
+    Route::get('/profile','AdminController@profile');
+    Route::get('/edit-profile','AdminController@editprofile');
+    Route::post('/edit-profile/post','AdminController@updateprofile');
+    Route::get('/reg-managers','AdminController@managers');
+    Route::get('/managers-form','AdminController@managersform');
+    Route::post('/managers-form/post','AdminController@addManager');
+    Route::get('/addregion','AdminController@addregion');
+    Route::post('/addregion/post','AdminController@postregion');
+    Route::get('/subsubregion','AdminController@addsubregion');
+    Route::post('/subregion/post','AdminController@postsubregion');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//the route below is for posting the coordinates of an application user, research more on this
 //Route::post('/map', function (Request $request) {
 //    $lat = $request->input('lat');
 //    $long = $request->input('long');
@@ -30,19 +88,3 @@ Route::post('/edit-profile/post','UserController@updateprofile');
 //    event(new SendLocation($location));
 //    return response()->json(['status'=>'success', 'data'=>$location]);
 //});
-
-Route::get('wewe',function(){
-   return view('user.pages.mainform');
-});
-
-
-//remember to prefix all the routes and add middleware
-Route::get('/admin/home','AdminController@index')->middleware('admin');
-Route::get('/admin/reg-managers','AdminController@managers');
-Route::get('/admin/managers-form','AdminController@managersform');
-Route::post('/admin/managers-form/post','AdminController@addManager');
-Route::get('/admin/addregion','AdminController@addregion');
-Route::post('/admin/addregion/post','AdminController@postregion');
-
-Route::get('/admin/subsubregion','AdminController@addsubregion');
-Route::post('admin/subregion/post','AdminController@postsubregion');

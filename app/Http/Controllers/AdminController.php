@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use App\Region;
 use App\RegionalManager;
 use App\Subregion;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
+
+//use Intervention\Image\Image;
+//use Intervention\Image\ImageManagerStatic as Image;
+
 
 class AdminController extends Controller
 {
     public function index()
     {
         $user=Auth::user();
-        return view('admin.pages.home',compact('user'));
+        return view('admin.pages.home',compact('user'),array('user'=>Auth::user()));
     }
 
     public function managers()
@@ -22,7 +30,8 @@ class AdminController extends Controller
 
     public function managersform()
     {
-        return view('admin.pages.managers-form');
+        $regions=Region::all();
+        return view('admin.pages.managers-form',compact('regions'));
 
     }
 
@@ -66,6 +75,37 @@ class AdminController extends Controller
         $subregion->save();
         return back()->with('status','A subregion has been added successfully ');
 
+    }
+    public function profile()
+    {
+        $user=Auth::user();
+
+        return view('admin.pages.profile',array('user'=>Auth::user()));
+    }
+
+    public function editprofile(User $user)
+    {
+        Session::flash('_old_input',$user);
+
+        return view('admin.pages.profileform',array('user'=>Auth::user()));
+    }
+
+    public function updateprofile(Request $request)
+    {
+
+        $user=Auth::user();
+        if ($request->hasFile('avatar'))
+        {
+            $avatar=$request->file('avatar');
+            $filename=time(). '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/images/admin/profile-pictures/' . $filename));
+
+            $user->avatar = $filename;
+        }
+        $user ->save();
+
+
+        return back()->with('status','Profile updated successfully!');
     }
 
 }

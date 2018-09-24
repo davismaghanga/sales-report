@@ -68,7 +68,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><i class="fa fa-book"></i> <span>Story Moja Africa</span></a>
+                    <a href="#" class="site_title"><i class="fa fa-book"></i> <span>Storymoja</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -76,7 +76,8 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="images/admin/profile-pictures/{{Auth::user()->avatar}}" alt="..." class="img-circle profile_img">
+                        <img src="{{asset('images/admin/profile-pictures/'.Auth::user()->avatar)}}" alt="..." class="img-circle profile_img">
+                        {{--<img src="images/admin/profile-pictures/{{Auth::user()->avatar}}" alt="..." class="img-circle profile_img">--}}
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -167,11 +168,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="images/admin/profile-pictures/{{$user->avatar}}" alt="Avatar"> {{Auth::user()->name}}
+                                <img src="{{asset('images/admin/profile-pictures/'.Auth::user()->avatar)}}" alt="Avatar"> {{Auth::user()->name}}
+                                {{--<img src="images/admin/profile-pictures/{{Auth::user()->avatar}}" alt="Avatar"> {{Auth::user()->name}}--}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="{{url('profile')}}"> Profile</a></li>
+                                <li><a href="{{url('/admin/profile')}}"> Profile</a></li>
 
                                 <li>
                                     <a href="{{url('logout')}}"

@@ -15,7 +15,7 @@ class CreateBooklistsTable extends Migration
     {
         Schema::create('booklists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->integer('institution_id');
             $table->timestamps();
         });

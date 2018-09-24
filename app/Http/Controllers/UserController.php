@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Booklist;
+use App\Institution;
+use App\institutionBooklist;
 use App\Region;
 use App\RegionalManager;
 use App\Subregion;
@@ -54,4 +57,57 @@ class UserController extends Controller
         return back()->with('status','Profile updated successfully!');
 
     }
+
+    public function mainform()
+    {
+        $regions=Region::all();
+        $subregions=Subregion::all();
+        return view('user.pages.mainform',compact('regions','subregions'));
+
+    }
+
+//method for filling the main form
+    public function fill(Request $request)
+    {
+        $institution=new Institution();
+
+        $institution->institution_name=$request->institution_name;
+        $institution->type=$request->type;
+        $institution->activity=$request->activity;
+        $institution->upcoming=$request->upcoming;
+        $institution->orders=$request->orders;
+        $institution->outcome=$request->outcome;
+        $institution->region_id=$request->region_id;
+        $institution->subregion_id=$request->subregion_id;
+        $institution->contactName=$request->contactName;
+        $institution->contactEmail=$request->contactEmail;
+        $institution->contactDesignation=$request->contactDesignation;
+        $institution->contactNumber=$request->contactNumber;
+        $institution->save();
+
+        if ($request->hasFile('filename'))
+        {
+//            dd($request->file('filename_'));
+
+            foreach ($request->file('filename') as $file)
+            {
+//                var_dump($file);
+                $extension=$file->getClientOriginalExtension();
+                $filename=uniqid(). '.'.$extension;
+                $location=public_path('Documents/');
+                $file->move($location,$filename);
+                $booklist=new Booklist();
+                $booklist->filename=$filename;
+                $booklist->institution_id = $institution->id;
+                $booklist->save();
+
+            }
+        }
+
+        return back()->with('status','Form submitted successfully');
+
+
+
+    }
+
 }
