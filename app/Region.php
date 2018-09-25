@@ -10,6 +10,11 @@ class Region extends Model
     {
         return $this->hasMany(Subregion::class);
     }
+
+    public function institutions()
+    {
+        return $this->hasMany(Institution::class);
+    }
 }
 //wait
 //

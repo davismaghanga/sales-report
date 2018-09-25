@@ -69,6 +69,7 @@ class UserController extends Controller
 //method for filling the main form
     public function fill(Request $request)
     {
+
         $institution=new Institution();
 
         $institution->institution_name=$request->institution_name;
@@ -83,6 +84,7 @@ class UserController extends Controller
         $institution->contactEmail=$request->contactEmail;
         $institution->contactDesignation=$request->contactDesignation;
         $institution->contactNumber=$request->contactNumber;
+        $institution->user_id=Auth::id();
         $institution->save();
 
         if ($request->hasFile('filename'))
@@ -105,7 +107,24 @@ class UserController extends Controller
         }
 
         return back()->with('status','Form submitted successfully');
+    }
 
+    public function view()
+    {
+       $user=Auth::user();
+       $institutions=Institution::all();
+       $regions=Region::all();
+       $subregions=Subregion::all();
+
+        return view('user.pages.institutions',compact('user','institutions','regions','subregions'));
+    }
+
+    public function updateinstitution(Institution $institution)
+    {
+        Session::flash('_old_input',$institution);
+//        dd($institution);
+
+        return view('user.pages.mainform');
 
 
     }

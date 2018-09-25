@@ -27,6 +27,7 @@ class CreateInstitutionsTable extends Migration
             $table->string('contactEmail');
             $table->string('contactDesignation');
             $table->string('contactNumber');
+            $table->integer('user_id');
 //            $table->integer('booklist_id');
             $table->timestamps();
         });

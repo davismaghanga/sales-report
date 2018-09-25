@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Institution extends Model
 {
-    public function person()
+    public function user()
     {
-        return $this->hasOne(ContactPerson::class);
-    }
+        return $this->hasOne(User::class);
+   }
 
     public function booklists()
     {

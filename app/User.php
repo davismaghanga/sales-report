@@ -28,6 +28,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function institutions()
+    {
+        return $this->hasMany(Institution::class);
+
+    }
+
     public function region()
     {
         return $this->belongsTo(Region::class);

@@ -104,16 +104,15 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
                             <li>
-                                <a><i class="fa fa-home"></i> Home
+                                <a href="{{url('mainform')}}"><i class="fa fa-home"></i> Home (main-form)
                                 </a>
                             </li>
                             <li><a href="{{url('profile')}}"><i class="fa fa-user"></i> My profile </a>
                             </li>
-
-
-
-                            <li><a><i class="fa fa-clone"></i>To be determined <span class="fa fa-chevron-down"></span></a>
+                            <li><a href="{{url('institutions')}}"><i class="fa fa-clone"></i> Institutions visited </a>
                             </li>
+
+
                         </ul>
                     </div>
                     <div class="menu_section">

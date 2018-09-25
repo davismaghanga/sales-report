@@ -54,19 +54,19 @@
 
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <textarea class="form-control" rows="3" placeholder="What activity took place?"  required= "required"   name="activity"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="What activity took place?"  required= "required"   value="{{old('activity')}}"    name="activity"></textarea>
 
                         {{--<input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="What activity took place?" name="activity" value="{{old('activity')}}">--}}
                         {{--<span class="fa fa-gamepad form-control-feedback left" aria-hidden="true"></span>--}}
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <textarea class="form-control" rows="3" placeholder="Any upcoming events?" name="upcoming"  required="required"  ></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Any upcoming events?" name="upcoming"  required="required"   value="{{old('upcoming')}}" ></textarea>
                         {{--<span class="fa fa-user-plus form-control-feedback left" aria-hidden="true"></span>--}}
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <textarea class="form-control" rows="3" placeholder="Outcome/Follow up needed" name="outcome" required="required"  ></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Outcome/Follow up needed" name="outcome" required="required"   value="{{old('outcome')}}" ></textarea>
                         {{--<span class="fa fa-user-plus form-control-feedback left" aria-hidden="true"></span>--}}
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label  style="color: deeppink"  class="control-label col-md-3 col-sm-3 col-xs-12">Orders Received (Kshs):</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="number" name="orders" class="form-control" placeholder="Total Value of Orders">
+                            <input type="number" name="orders" class="form-control" placeholder="Total Value of Orders" value="{{old('orders')}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +102,7 @@
                             <div class="file-field">
                                 <a class="btn-floating peach-gradient mt-0 float-left">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    <input type="file" multiple name="filename[]">
+                                    <input type="file" multiple name="filename[]"  value="{{old('ilename[]')}}">
                                 </a>
 
                             </div>
@@ -114,26 +114,26 @@
         <div class="form-group">
             <label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12">Contact Person's Name:</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" name="contactName" id="autocomplete-custom-append"  class="form-control" value="{{old('name')}} " placeholder="Enter Contact's name"/>
+                <input type="text" name="contactName" id="autocomplete-custom-append"  class="form-control" value="{{old('contactName')}} " placeholder="Enter Contact's name"/>
             </div>
         </div>
         <div class="form-group">
             <label style="color:deeppink" class="control-label col-md-3 col-sm-3 col-xs-12">Designation:</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" name="contactDesignation" id="autocomplete-custom-append" class="form-control col-md-10" placeholder="Position of institution representative"/>
+                <input type="text" name="contactDesignation" id="autocomplete-custom-append" class="form-control col-md-10" placeholder="Position of institution representative" value="{{old('contactDesignation')}}"/>
             </div>
         </div>
 
         <div class="form-group">
             <label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number:</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" name="contactNumber" class="form-control col-md-10" placeholder="Phone Number" data-inputmask="'mask' : '(999) 999-9999'" value="{{old('phone')}}"/>
+                <input type="text" name="contactNumber" class="form-control col-md-10" placeholder="Phone Number" data-inputmask="'mask' : '(999) 999-9999'" value="{{old('contactNumber')}}"/>
             </div>
         </div>
         <div class="form-group">
             <label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12">Email:</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="email" name="contactEmail" id="autocomplete-custom-append" class="form-control col-md-10" placeholder="Email"/>
+                <input type="email" name="contactEmail" id="autocomplete-custom-append" class="form-control col-md-10" placeholder="Email" value="{{old('contactEmail')}}"/>
             </div>
         </div>
 
@@ -153,8 +153,7 @@
         </div>
 
     </div>
-                <br />
-
+    <br />
 </div>
 
 

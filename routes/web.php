@@ -10,6 +10,8 @@
 |
 */
 
+
+//sales rep aka users routes
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -20,11 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UserController@profile');
 Route::get('/edit-profile','UserController@editprofile');
 Route::post('/edit-profile/post','UserController@updateprofile');
-
 Route::get('mainform','UserController@mainform');
 Route::post('mainform/post','UserController@fill');
+Route::get('institutions','UserController@view');
+//Route::get('update/institution/{institution},''');
+Route::get('update/institution/{institution}','UserController@updateinstitution');
 
-//remember to prefix all the routes and add middleware
+//admin routes
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
 //    Route::get('/home','AdminController@index');

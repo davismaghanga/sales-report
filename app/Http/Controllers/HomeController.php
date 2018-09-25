@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Region;
+use App\Subregion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +29,9 @@ class HomeController extends Controller
     {
         if(Auth::user()->user_type==0)
         {
-            return view('user.pages.home');
+            $regions=Region::all();
+            $subregions=Subregion::all();
+            return view('user.pages.mainform',compact('regions','subregions'));
 
         }
         else
