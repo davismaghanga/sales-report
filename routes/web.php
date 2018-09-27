@@ -30,8 +30,6 @@ Route::get('update/institution/{institution}','UserController@updateinstitution'
 
 //admin routes
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
-
-//    Route::get('/home','AdminController@index');
     Route::get('/profile','AdminController@profile');
     Route::get('/edit-profile','AdminController@editprofile');
     Route::post('/edit-profile/post','AdminController@updateprofile');
@@ -41,7 +39,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/addregion','AdminController@addregion');
     Route::post('/addregion/post','AdminController@postregion');
     Route::get('/subsubregion','AdminController@addsubregion');
+    Route::get('/view-regions','AdminController@allregions');
+    Route::get('/update/region/{region}','AdminController@updateregion')->name('update.region');
     Route::post('/subregion/post','AdminController@postsubregion');
+    Route::get('/view-subregions','AdminController@allsubregions');
+//    Route::get('/addregmamanger','AdminController@addregmanager');
+//    Route::post('/addregmamanger/post','AdminController@regmanager');
+    Route::get('/view-regmanagers','AdminController@allregmanagers');
+
 });
 
 

@@ -167,7 +167,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="images/user/profile-pictures/{{Auth::user()->avatar}}" alt=""> {{Auth::user()->name}}
+                                <img src="{{asset('images/user/profile-pictures/'.Auth::user()->avatar)}}" alt=""> {{Auth::user()->name}}
+                                {{--<img src="images/user/profile-pictures/{{Auth::user()->avatar}}" alt=""> {{Auth::user()->name}}--}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

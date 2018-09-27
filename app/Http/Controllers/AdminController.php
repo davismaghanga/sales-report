@@ -25,7 +25,9 @@ class AdminController extends Controller
 
     public function managers()
     {
-        return view('admin.pages.managers');
+        $regional_managers=RegionalManager::all();
+
+        return view('admin.pages.allregmanagers',compact('regional_managers'));
     }
 
     public function managersform()
@@ -60,7 +62,14 @@ class AdminController extends Controller
     }
     public function postregion(Request $request)
     {
-        $region = new Region();
+        if($request->has('id') && request('id')!=null)
+        {
+            $region=Region::find($request->id);
+
+        }
+        else{
+            $region = new Region();
+        }
         $region->region = $request->region;
         $region->save();
         return back()->with('status','A region has been added successfully');
@@ -106,6 +115,27 @@ class AdminController extends Controller
 
 
         return back()->with('status','Profile updated successfully!');
+    }
+
+    public function allregions()
+    {
+        $regions=Region::all();
+        return view('admin.pages.allregions',compact('regions'));
+    }
+
+    public function updateregion(Region $region)
+    {
+        Session::flash('_old_input',$region);
+//        var_dump($region);
+        return view('admin.pages.regions');
+    }
+
+    public function allsubregions()
+    {
+        $subregions=Subregion::all();
+
+        return view('admin.pages.allsubregions',compact('subregions'));
+
     }
 
 }

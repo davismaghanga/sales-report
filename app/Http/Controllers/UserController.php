@@ -23,9 +23,9 @@ class UserController extends Controller
         return view('user.pages.profile',array('user'=>Auth::user()));
     }
 
-    public function editprofile(User $user)
+    public function editprofile()
     {
-        Session::flash('_old_input',$user);
+//        Session::flash('_old_input',$user);
         $regions=Region::all();
         $subregions=Subregion::all();
 
@@ -35,13 +35,14 @@ class UserController extends Controller
 
     public function updateprofile(Request $request)
     {
+//        $regions=Region::all();
 
             $user=Auth::user();
             $user->dob=$request->dob;
             $user->location = $request->location;
             $user->contacts=$request->contacts;
             $user->region_id=$request->region_id;
-            $user->subregion_id=$request->subregion_id;
+//            $user->subregion_id=$request->subregion_id;
             $user->save();
 
         if ($request->hasFile('avatar'))
@@ -62,7 +63,8 @@ class UserController extends Controller
     {
         $regions=Region::all();
         $subregions=Subregion::all();
-        return view('user.pages.mainform',compact('regions','subregions'));
+        $booklist = false;
+        return view('user.pages.mainform',compact('regions','subregions','booklist'));
 
     }
 
@@ -123,9 +125,10 @@ class UserController extends Controller
     {
         Session::flash('_old_input',$institution);
 //        dd($institution);
-
-        return view('user.pages.mainform');
-
+        $regions=Region::all();
+        $subregions=Subregion::all();
+        $booklist = Booklist::where('institution_id', $institution->id)->get();
+        return view('user.pages.mainform',compact('regions','subregions', 'booklist'));
 
     }
 

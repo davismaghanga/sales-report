@@ -73,22 +73,22 @@
                                 <select type="text" class="select2_single form-control " required tabindex="-1" name="region_id">
                                     @foreach($regions as $region)
 
-                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                    <option value="{{$region->id}}">{{$region->region}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Sub-region</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select type="text" class="select2_single form-control " required tabindex="-1" name="subregion_id">
-                                    @foreach($subregions as $subregion)
+                        {{--<div class="form-group">--}}
+                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Sub-region</label>--}}
+                            {{--<div class="col-md-9 col-sm-9 col-xs-12">--}}
+                                {{--<select type="text" class="select2_single form-control " required tabindex="-1" name="subregion_id">--}}
+                                    {{--@foreach($subregions as $subregion)--}}
 
-                                        <option value="{{$subregion->id}}">{{$subregion->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                                        {{--<option value="{{$subregion->id}}">{{$subregion->name}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="ln_solid"></div>
                         <div class="form-group">

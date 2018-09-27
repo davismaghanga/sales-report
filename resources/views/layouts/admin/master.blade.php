@@ -89,56 +89,80 @@
                 <br />
 
             <!-- sidebar menu -->
-                <style>
-                    a:hover{
-                        background-color: deeppink !important;
-                    }
-                </style>
 
-
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div   id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> HOMEE <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Dashboard2</a></li>
-                                    <li><a href="#">Dashboard3</a></li>
-                                </ul>
+                            <li><a><i class="fa fa-home"></i> HOMEE</a>
+
                             </li>
 
-                            <li><a><i class="fa fa-home"></i> Regions <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-globe"></i> Regions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{url('admin/addregion')}}"> <i class="fa fa-globe"></i> Add a Region</a></li>
                                     <li><a href="{{url('admin/subsubregion')}}"> <i class="fa fa-globe"></i>  Add a Sub-Region</a></li>
+                                    {{--edit a region and delete--}}
+                                    <li> <a href="{{url('admin/view-regions')}}"> <i class="fa fa-globe"></i> View All regions</a></li>
+
+                                    {{--edit a subregion and delete--}}
+                                    <li> <a href="{{url('admin/view-subregions')}}"> <i class="fa fa-globe"></i> View All sub-regions</a></li>
+
+
                                 </ul>
                             </li>
 
-                            <li><a href="{{url('admin/reg-managers')}}"><i class="fa fa-users"></i> Regional Managers </a>
+                            <li><a><i class="fa fa-globe"></i> Regional Managers <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{url('admin/managers-form')}}"> <i class="fa fa-globe"></i> Add a Region manager</a></li>
+
+                                    {{--edit and delete a regional manager--}}
+                                    <li> <a href="{{url('admin/reg-managers')}}"> <i class="fa fa-globe"></i> View All Regional Managers</a></li>
+
+                                </ul>
                             </li>
+
+
+                            </li>
+
+                            <li><a><i class="fa fa-globe"></i> Institutions <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href=""> <i class="fa fa-globe"></i> Public Primary Schools</a></li>
+
+                                    <li><a href=""> <i class="fa fa-globe"></i> Private Primary Schools</a></li>
+
+                                    {{--edit a region and delete--}}
+                                    <li> <a href=""> <i class="fa fa-globe"></i> Private Secondary Schools</a></li>
+
+                                    {{--edit a subregion and delete--}}
+                                    <li> <a href=""> <i class="fa fa-globe"></i> NGO's</a></li>
+                                    <li> <a href=""> <i class="fa fa-globe"></i> County Office</a></li>
+                                    <li> <a href=""> <i class="fa fa-globe"></i> Bookshop</a></li>
+                                    <li> <a href=""> <i class="fa fa-globe"></i> ECD/Kindergartens/Nursery</a></li>
+
+
+                                </ul>
+                            </li>
+
+
 
                         </ul>
                     </div>
                     <div class="menu_section">
-                        <h3>Live On</h3>
+                        <h3>More</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                            </li>
-                            <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> All Sales Representatives</a>
 
                             </li>
-                            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
 
                             </li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
                         </ul>
                     </div>
 
                 </div>
-                <!-- /sidebar menu -->
+                {{--<!-- /sidebar menu -->--}}
 
-            <!-- /menu footer buttons -->
+            {{--<!-- /menu footer buttons -->--}}
                 <div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>

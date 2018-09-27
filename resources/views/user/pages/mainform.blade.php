@@ -5,6 +5,17 @@
 
 <div class="right_col" role="main">
     <div class="col-md-12 col-xs-12">
+
+        @if(old('id') != null)
+            <div>
+                @if($booklist)
+                    @foreach($booklist as $item)
+                        {{ $item }}
+                    @endforeach
+                @endif
+            </div>
+        @endif
+
         <div class="x_panel">
             <div class="x_title">
                 <h2 style="text-decoration-color: deeppink !important;">Sales Report <small>Kindly fill this form carefully!</small></h2>
@@ -102,7 +113,7 @@
                             <div class="file-field">
                                 <a class="btn-floating peach-gradient mt-0 float-left">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    <input type="file" multiple name="filename[]"  value="{{old('ilename[]')}}">
+                                    <input type="file" multiple name="filename[]"  value="{{old('filename[]')}}">
                                 </a>
 
                             </div>

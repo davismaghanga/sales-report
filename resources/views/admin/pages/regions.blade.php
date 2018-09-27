@@ -33,6 +33,7 @@
                         <form class="form-horizontal form-label-left input_mask" action="{{url('admin/addregion/post')}}" method="post">
                             {{csrf_field()}}
 
+                            <input type="hidden" name="id" value="{{old('id')}}">
                             <div class=" form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Enter Region" name="region" value="{{old('region')}}">
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>

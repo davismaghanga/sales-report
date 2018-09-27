@@ -45,7 +45,7 @@
                             </div>
                             <div class=" form-group has-feedback">
 
-                                <select type="text" class="form-control" required="required" id="inputSuccess5" placeholder="Enter Sub Region" name="region_id" >
+                                <select type="text" class="form-control" required="required" id="inputSuccess5" placeholder="Enter Region" name="region_id" >
                                     @foreach($regions as $region)
 
                                         {{--we loop through all the regions for every region we create a selectable option--}}
@@ -54,7 +54,7 @@
                                         <option value="{{$region->id}}" {{(old('region_id') == $region->id)?"selected":""}}>{{$region->region}}</option>
                                     @endforeach
                                 </select>
-                                <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                {{--<span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>--}}
                             </div>
 
 
