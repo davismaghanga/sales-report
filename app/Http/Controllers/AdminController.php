@@ -78,11 +78,18 @@ class AdminController extends Controller
 
     public function postsubregion(Request $request)
     {
-        $subregion = new Subregion();
+        if($request->has('id') && request('id')!=null)
+        {
+            $subregion=Subregion::find($request->id);
+        }
+        else {
+            $subregion = new Subregion();
+        }
+
         $subregion->subregion=$request->subregion;
         $subregion->region_id = request('region_id');
         $subregion->save();
-        return back()->with('status','A subregion has been added successfully ');
+        return back()->with('status','Success! ');
 
     }
     public function profile()
@@ -114,7 +121,7 @@ class AdminController extends Controller
         $user ->save();
 
 
-        return back()->with('status','Profile updated successfully!');
+        return back()->with('status','Success!');
     }
 
     public function allregions()
@@ -135,6 +142,15 @@ class AdminController extends Controller
         $subregions=Subregion::all();
 
         return view('admin.pages.allsubregions',compact('subregions'));
+
+    }
+
+    public function updatesubregion(Subregion $subregion)
+    {
+        Session::flash('_old_input',$subregion);
+        $regions=Region::all();
+
+        return view('admin.pages.subregions',compact('regions'));
 
     }
 

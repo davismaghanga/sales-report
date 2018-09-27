@@ -32,6 +32,7 @@
                         <br />
                         <form class="form-horizontal form-label-left input_mask" action="{{url('admin/subregion/post')}}" method="post">
                             {{csrf_field()}}
+                            <input type="hidden" name="id" value="{{old('id')}}">
 
                             <div class=" form-group has-feedback">
                             <input type="text" class="form-control" id="inputSuccess5" placeholder="Enter Sub Region" name="subregion" value="{{old('subregion')}}">

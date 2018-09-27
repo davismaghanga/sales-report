@@ -74,7 +74,7 @@
 
                                             <td class=""> {{$subregion->subregion}}</td>
 
-                                            <td class="">  <a href="{{route('update.subregion',$subregion->id)}}"> <i class="fa fa-edit"></i></a>
+                                            <td class="">  <a href="{{url('admin/update/subregion',$subregion->id)}}"> <i class="fa fa-edit"></i></a>
                                                 &nbsp;  <a href=""> <i class="fa fa-trash"></i>  </a>
                                             </td>
 

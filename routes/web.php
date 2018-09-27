@@ -43,6 +43,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/update/region/{region}','AdminController@updateregion')->name('update.region');
     Route::post('/subregion/post','AdminController@postsubregion');
     Route::get('/view-subregions','AdminController@allsubregions');
+    Route::get('update/subregion/{subregion}','AdminController@updatesubregion');
 //    Route::get('/addregmamanger','AdminController@addregmanager');
 //    Route::post('/addregmamanger/post','AdminController@regmanager');
     Route::get('/view-regmanagers','AdminController@allregmanagers');
