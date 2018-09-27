@@ -138,4 +138,11 @@ class AdminController extends Controller
 
     }
 
+    public function deleteregion( Region $region)
+    {
+        $region=Region::find($region->id);
+        $region->delete();
+        return back()->with('status','Delete successful');
+    }
+
 }
