@@ -55,7 +55,7 @@ class UserController extends Controller
         }
         $user ->save();
 
-        return back()->with('status','Profile updated successfully!');
+        return back()->with('status','Success!');
 
     }
 
@@ -108,7 +108,7 @@ class UserController extends Controller
             }
         }
 
-        return back()->with('status','Form submitted successfully');
+        return back()->with('status','Success!');
     }
 
     public function view()

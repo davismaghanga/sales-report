@@ -17,7 +17,8 @@
 
     <link href="{{asset('/vendors/cropper/dist/cropper.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{--<link href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">--}}
     <!-- NProgress -->
     <link href="{{asset('vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <!-- iCheck -->
@@ -94,10 +95,12 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> HOMEE</a>
+                            <li><a><i class="fa fa-home"></i> HOME</a>
 
                             </li>
 
+
+                            {{--regions--}}
                             <li><a><i class="fa fa-globe"></i> Regions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{url('admin/addregion')}}"> <i class="fa fa-globe"></i> Add a Region</a></li>
@@ -112,12 +115,14 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-globe"></i> Regional Managers <span class="fa fa-chevron-down"></span></a>
+
+                            {{--regional managers--}}
+                            <li><a><i class="fa fa-users"></i> Regional Managers <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{url('admin/managers-form')}}"> <i class="fa fa-globe"></i> Add a Region manager</a></li>
+                                    <li><a href="{{url('admin/managers-form')}}"> <i class="fa fa-user-plus"></i> Add a Region manager</a></li>
 
                                     {{--edit and delete a regional manager--}}
-                                    <li> <a href="{{url('admin/reg-managers')}}"> <i class="fa fa-globe"></i> View All Regional Managers</a></li>
+                                    <li> <a href="{{url('admin/reg-managers')}}"> <i class="fa fa-users"></i> View All Regional Managers</a></li>
 
                                 </ul>
                             </li>
@@ -125,20 +130,23 @@
 
                             </li>
 
-                            <li><a><i class="fa fa-globe"></i> Institutions <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href=""> <i class="fa fa-globe"></i> Public Primary Schools</a></li>
 
-                                    <li><a href=""> <i class="fa fa-globe"></i> Private Primary Schools</a></li>
+                            {{--institutions--}}
+
+                            <li><a><i class="fa fa-building"></i> Institutions <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href=""> <i class="fa fa-building"></i> Public Primary Schools</a></li>
+
+                                    <li><a href=""> <i class="fa fa-building"></i> Private Primary Schools</a></li>
 
                                     {{--edit a region and delete--}}
-                                    <li> <a href=""> <i class="fa fa-globe"></i> Private Secondary Schools</a></li>
+                                    <li> <a href=""> <i class="fa fa-building"></i> Private Secondary Schools</a></li>
 
                                     {{--edit a subregion and delete--}}
-                                    <li> <a href=""> <i class="fa fa-globe"></i> NGO's</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> County Office</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> Bookshop</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> ECD/Kindergartens/Nursery</a></li>
+                                    <li> <a href=""> <i class="fa fa-building"></i> NGO's</a></li>
+                                    <li> <a href=""> <i class="fa fa-building"></i> County Office</a></li>
+                                    <li> <a href=""> <i class="fa fa-building"></i> Bookshop</a></li>
+                                    <li> <a href=""> <i class="fa fa-building"></i> ECD/Kindergartens/Nursery</a></li>
 
 
                                 </ul>
