@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\County;
+use App\Institution;
 use App\Region;
+use App\SubCounty;
 use App\Subregion;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,17 +31,23 @@ class HomeController extends Controller
     public function index()
 
     {
+        $booklist = false;
+
+
         if(Auth::user()->user_type==0)
         {
             $regions=Region::all();
-            $subregions=Subregion::all();
-            return view('user.pages.mainform',compact('regions','subregions'));
+            $counties=County::where('region_id',Auth::user()->region_id)->get();
+//            $subcounties=SubCounty::where('region_id',Auth::user()->region_id)->get();
+            return view('user.pages.mainform',compact('regions','counties','subcounties','booklist'));
 
         }
         else
         {
-            return view('admin.pages.home');
+            $institutions=Institution::all();
+            return view('admin.pages.home',compact('institutions'));
         }
+
     }
 
 }

@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('secret'),
             //1 is the admin
             'user_type'=>1,
-//            'region_id'=>1,
+            'region_id'=>1,
 //            'subregion_id'=>1,
             'contacts'=>'0789055371',
             'location'=>'Lower Kabete, Spring Valley',

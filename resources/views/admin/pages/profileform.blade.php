@@ -38,6 +38,20 @@
                             <div class=" form-group">
                                 <input type="file" class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar">
                             </div>
+                            @if(count($errors->all()))
+
+                                <div class="alert alert-danger">
+
+                                    @foreach($errors->all() as $error)
+
+                                        <ul>
+                                            <li> {{$error}}</li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+
+
+                            @endif
 
                             <div class="ln_solid"></div>
                             <div class="form-group">

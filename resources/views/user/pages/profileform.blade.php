@@ -32,11 +32,25 @@
                     <br />
                     <form enctype="multipart/form-data" class="form-horizontal form-label-left input_mask" method="post" action="{{url('edit-profile/post')}}">
                         {{csrf_field()}}
+                        <input type="hidden" name="id"   value="{{old('id')}}">
+                        @if(count($errors)>0)
+                        <div class="alert alert-danger">
+
+                            @foreach($errors->all() as $error)
+
+                                <ul>
+                                    <li> {{$error}}</li>
+                                </ul>
+
+                            @endforeach
+                        </div>
+
+                        @endif
 
 
                         {{-- weka pp hapa--}}
                         <div class=" form-group">
-                            <input type="file" class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar">
+                            <input type="file"  value="{{old('avatar')}}"  class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar">
                             {{--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--}}
                         </div>
 
@@ -47,7 +61,7 @@
                         </div>
 
                         <div class=" form-group has-feedback">
-                            <input type="text" class="form-control"  required="required" id="inputSuccess5" placeholder="Sub-County" name="location" value="{{old('location')}}">
+                            <input type="text" class="form-control"  required="required" id="inputSuccess5" placeholder="Where do you stay? (village/ward)" name="location" value="{{old('location')}}">
                             <span class="fa fa-location-arrow form-control-feedback right" aria-hidden="true"></span>
                         </div>
 
@@ -59,7 +73,7 @@
 
                                 <div class="form-group">
                                     <div class='input-group date' id='mpyDatepicker'>
-                                        <input type='text' name="dob" id='myDatepickper' required="required" class="form-control" placeholder="Date of birth"/>
+                                        <input type='text' name="dob" id='myDatepickper' required="required" class="form-control" placeholder="Date of birth" value="{{old('dob')}}"/>
                                         <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -67,28 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Region</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select type="text" class="select2_single form-control " required tabindex="-1" name="region_id">
-                                    @foreach($regions as $region)
 
-                                    <option value="{{$region->id}}">{{$region->region}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        {{--<div class="form-group">--}}
-                            {{--<label class="control-label col-md-3 col-sm-3 col-xs-12">Select your assigned Sub-region</label>--}}
-                            {{--<div class="col-md-9 col-sm-9 col-xs-12">--}}
-                                {{--<select type="text" class="select2_single form-control " required tabindex="-1" name="subregion_id">--}}
-                                    {{--@foreach($subregions as $subregion)--}}
-
-                                        {{--<option value="{{$subregion->id}}">{{$subregion->name}}</option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
 
                         <div class="ln_solid"></div>
                         <div class="form-group">

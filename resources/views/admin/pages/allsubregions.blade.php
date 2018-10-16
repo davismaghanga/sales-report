@@ -32,7 +32,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Subregions <small>Update at will</small></h2>
+                            <h2>Counties <small></small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -60,23 +60,20 @@
                                     <thead>
                                     <tr class="headings">
 
-                                        <th class="column-title">Subregion's Name </th>
-                                        <th class="column-title no-link last"><span class="nobr">Action</span>
+                                        <th class="column-title">County Name </th>
+                                        <th class="column-title no-link last"><span class="nobr">Region</span>
                                         </th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
 
-                                    @foreach($subregions as $subregion)
+                                    @foreach($counties as $county)
                                         <tr class="even pointer">
                                             {{--@foreach($user->institutions as $institution)--}}
 
-                                            <td class=""> {{$subregion->subregion}}</td>
-
-                                            <td class="">  <a href="{{route('update.subregion',$subregion->id)}}"> <i class="fa fa-edit"></i></a>
-                                                &nbsp;  <a href=""> <i class="fa fa-trash"></i>  </a>
-                                            </td>
+                                            <td class=""> {{$county->county}}</td>
+                                            <td class=""> {{$county->region->region}}</td>
 
                                             {{--@endforeach--}}
                                         </tr>

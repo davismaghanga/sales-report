@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
 {
-    public function subregions()
+    public function counties()
     {
-        return $this->hasMany(Subregion::class);
+        return $this->hasMany(County::class);
+    }
+
+    public function subcounties()
+    {
+        return $this->hasMany(SubCounty::class);
+
     }
 
     public function institutions()

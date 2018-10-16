@@ -21,10 +21,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('dob')->nullable();
-            $table->integer('region_id')->nullable();
+            $table->integer('region_id');
             $table->string('contacts')->nullable();
             $table->string('location')->nullable();
-            $table->string('subregion_id')->nullable();
             $table->string('avatar')->default('default.jpg');
 
             $table->rememberToken();

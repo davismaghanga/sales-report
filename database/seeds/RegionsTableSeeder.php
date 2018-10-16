@@ -22,13 +22,19 @@ class RegionsTableSeeder extends Seeder
             'region'=>'Nairobi'
         ]);
         DB::table('regions')->insert([
-            'region'=>'Mountain'
+            'region'=>'Central'
         ]);
         DB::table('regions')->insert([
             'region'=>'Western'
         ]);
         DB::table('regions')->insert([
-            'region'=>'South Nyanza'
+            'region'=>'Nyanza'
+        ]);
+        DB::table('regions')->insert([
+           'region'=>'North Eastern'
+        ]);
+        DB::table('regions')->insert([
+            'region'=>'Eastern'
         ]);
 
 

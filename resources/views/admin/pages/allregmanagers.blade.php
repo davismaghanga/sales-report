@@ -71,12 +71,14 @@
                                     @foreach($regional_managers as $regional_manager)
                                         <tr class="even pointer">
                                             {{--@foreach($user->institutions as $institution)--}}
+                                            @if(Auth::user()->id == $regional_manager->id)
+                                                <td class=""> {{$regional_manager->name}}</td>
+                                                <td class=""> <a href=""> <i class="fa fa-user-times"></i> </a></td>
+                                                @else
+                                                <td class=""> {{$regional_manager->name}}</td>
+                                                <td class=""> <a href="{{url('admin/delete/admin',$regional_manager->id)}}"> <i class="fa fa-trash"></i> </a></td>
+                                            @endif
 
-                                            <td class=""> {{$regional_manager->name}}</td>
-
-                                            <td class="">  <a href="#}"> <i class="fa fa-edit"></i></a>
-                                                &nbsp;  <a href=""> <i class="fa fa-trash"></i>  </a>
-                                            </td>
 
                                             {{--@endforeach--}}
                                         </tr>

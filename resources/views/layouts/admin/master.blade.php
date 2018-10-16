@@ -51,6 +51,14 @@
     <link href="{{asset('vendors/normalize-css/normalize.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/ion.rangeSlider/css/ion.rangeSlider.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="{{asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -94,30 +102,29 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> HOMEE</a>
+                            <li><a href="{{route('home')}}"><i class="fa fa-home"></i> HOME</a>
 
                             </li>
 
                             <li><a><i class="fa fa-globe"></i> Regions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{url('admin/addregion')}}"> <i class="fa fa-globe"></i> Add a Region</a></li>
-                                    <li><a href="{{url('admin/subsubregion')}}"> <i class="fa fa-globe"></i>  Add a Sub-Region</a></li>
-                                    {{--edit a region and delete--}}
+
                                     <li> <a href="{{url('admin/view-regions')}}"> <i class="fa fa-globe"></i> View All regions</a></li>
 
                                     {{--edit a subregion and delete--}}
-                                    <li> <a href="{{url('admin/view-subregions')}}"> <i class="fa fa-globe"></i> View All sub-regions</a></li>
+                                    <li> <a href="{{url('admin/view-subregions')}}"> <i class="fa fa-globe"></i> View All Counties</a></li>
+                                    <li> <a href="{{url('admin/view-subcounties')}}"> <i class="fa fa-globe"></i> View All Sub Counties</a></li>
 
 
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-globe"></i> Regional Managers <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> Administrators <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{url('admin/managers-form')}}"> <i class="fa fa-globe"></i> Add a Region manager</a></li>
+                                    <li><a href="{{url('admin/authorize/user')}}"> <i class="fa fa-user"></i> Add an Admin</a></li>
 
                                     {{--edit and delete a regional manager--}}
-                                    <li> <a href="{{url('admin/reg-managers')}}"> <i class="fa fa-globe"></i> View All Regional Managers</a></li>
+                                    <li> <a href="{{url('admin/admins')}}"> <i class="fa fa-users"></i> View All Admins</a></li>
 
                                 </ul>
                             </li>
@@ -125,20 +132,21 @@
 
                             </li>
 
-                            <li><a><i class="fa fa-globe"></i> Institutions <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-building"></i> Institutions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href=""> <i class="fa fa-globe"></i> Public Primary Schools</a></li>
+                                    <li><a href="{{url('admin/view/public/primary')}}"> <i class="fa fa-building"></i> Public Primary Schools</a></li>
 
-                                    <li><a href=""> <i class="fa fa-globe"></i> Private Primary Schools</a></li>
+                                    <li><a href="{{url('admin/view/private/primary')}}"> <i class="fa fa-building"></i> Private Primary Schools</a></li>
 
                                     {{--edit a region and delete--}}
-                                    <li> <a href=""> <i class="fa fa-globe"></i> Private Secondary Schools</a></li>
+                                    <li> <a href="{{url('admin/view/private/secondary')}}"> <i class="fa fa-building"></i> Private Secondary Schools</a></li>
+                                    <li> <a href="{{url('admin/view/public/secondary')}}"> <i class="fa fa-building"></i> Public Secondary Schools</a></li>
 
                                     {{--edit a subregion and delete--}}
-                                    <li> <a href=""> <i class="fa fa-globe"></i> NGO's</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> County Office</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> Bookshop</a></li>
-                                    <li> <a href=""> <i class="fa fa-globe"></i> ECD/Kindergartens/Nursery</a></li>
+                                    <li> <a href="{{url('admin/view/ngos')}}"> <i class="fa fa-building"></i> NGO's</a></li>
+                                    <li> <a href="{{url('admin/view/counties')}}"> <i class="fa fa-building-o"></i> County Offices</a></li>
+                                    <li> <a href="{{url('admin/view/bookshops')}}"> <i class="fa fa-book"></i> Bookshops</a></li>
+                                    <li> <a href="{{url('admin/view/ecds')}}"> <i class="fa fa-child"></i> ECD/Kindergartens/Nursery</a></li>
 
 
                                 </ul>
@@ -151,10 +159,20 @@
                     <div class="menu_section">
                         <h3>More</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-users"></i> All Sales Representatives</a>
+                            <li><a href="{{url('admin/view/allreps')}}"><i class="fa fa-users"></i> Sales reps and Institutions uploaded</a></li>
+                            <li><a><i class="fa fa-globe"></i> Regional Reports</a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('admin/coast/details')}}"> Coast </a></li>
+                                <li><a href="{{url('admin/rift')}}"> Rift Valley </a></li>
+                                <li><a href="{{url('admin/nairobi')}}"> Nairobi </a></li>
+                                <li><a href="{{url('admin/central')}}"> Central </a></li>
+                                <li><a href="{{url('admin/western')}}"> Western </a></li>
+                                <li><a href="{{url('admin/nyanza')}}"> Nyanza </a></li>
+                                <li><a href="{{url('admin/northeastern')}}"> North Eastern </a></li>
+                                <li><a href="{{url('admin/eastern')}}"> Eastern </a></li>
 
-                            </li>
 
+                            </ul>
                             </li>
                         </ul>
                     </div>
@@ -162,22 +180,6 @@
                 </div>
                 {{--<!-- /sidebar menu -->--}}
 
-            {{--<!-- /menu footer buttons -->--}}
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
             </div>
         </div>
 
@@ -213,73 +215,7 @@
                             </ul>
                         </li>
 
-                        {{--the messages icon in the top right nav bar--}}
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
 
-                                        <span>
-                                      <span>John Smith</span>
-                                      <span class="time">3 mins ago</span>
-                                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -347,7 +283,12 @@
 <!-- jQuery Knob -->
 <script src="{{asset('vendors/jquery-knob/dist/jquery.knob.min.js')}}"></script>
 <!-- Cropper -->
-<script src="{{asset('vendors/cropper/dist/cropper.min.js')}}"></script>
+{{--<script src="{{asset('vendors/cropper/dist/cropper.min.js')}}"></script>--}}
+<script src="{{asset('js/axios/axios.min.js')}}"></script>
+
+
+
+@yield('scripts')
 
 {{--initialize datepicker--}}
 <script>
@@ -379,6 +320,8 @@
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+
+
 </script>
 
 </body>

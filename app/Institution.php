@@ -8,7 +8,7 @@ class Institution extends Model
 {
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
    }
 
     public function booklists()
@@ -21,8 +21,19 @@ class Institution extends Model
         return $this->belongsTo(Region::class);
     }
 
-    public function subregion()
+    public function county()
     {
-        return $this->belongsTo(Subregion::class);
+        return $this->belongsTo(County::class);
     }
+
+    public function subcounty()
+    {
+       return $this->belongsTo(SubCounty::class);
+    }
+
+    public function kyc()
+    {
+        return $this->hasOne(Kyc::class);
+    }
+
 }

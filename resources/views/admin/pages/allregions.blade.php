@@ -6,7 +6,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Institutions</h3>
+                    <h3>Regions</h3>
                 </div>
 
                 <div class="title_right">
@@ -32,7 +32,6 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>My places of visit <small>Update at will</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -60,9 +59,9 @@
                                     <thead>
                                     <tr class="headings">
 
-                                        <th class="column-title">Region's Name </th>
-                                        <th class="column-title no-link last"><span class="nobr">Action</span>
-                                        </th>
+                                        <th class="column-title"># </th>
+                                        <th class="column-title">Region <small> (former provinces)</small> </th>
+
                                     </tr>
                                     </thead>
 
@@ -72,11 +71,12 @@
                                         <tr class="even pointer">
                                             {{--@foreach($user->institutions as $institution)--}}
 
+                                            <td class=""> {{$region->id}}</td>
                                             <td class=""> {{$region->region}}</td>
 
-                                            <td class="">  <a href="{{route('update.region',$region->id)}}"> <i class="fa fa-edit"></i></a>
-                                                 &nbsp;  <a href="{{url('/admin/delete/region',$region->id)}}"> <i class="fa fa-trash"></i>  </a>
-                                            </td>
+                                            {{--<td class="">  <a href="{{route('update.region',$region->id)}}"> <i class="fa fa-edit"></i></a>--}}
+                                                 {{--&nbsp;  <a href="{{url('/admin/delete/region',$region->id)}}"> <i class="fa fa-trash"></i>  </a>--}}
+                                            {{--</td>--}}
 
                                             {{--@endforeach--}}
                                         </tr>

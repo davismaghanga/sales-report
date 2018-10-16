@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password','region_id'
     ];
 
     /**
@@ -39,9 +39,9 @@ class User extends Authenticatable
         return $this->belongsTo(Region::class);
     }
 
-    public function subregion()
+    public function county()
     {
-        return $this->belongsTo(Subregion::class);
+        return $this->belongsToMany(County::class);
 
     }
 

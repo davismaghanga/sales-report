@@ -32,6 +32,7 @@
                         <br />
                         <form class="form-horizontal form-label-left input_mask" action="{{url('admin/managers-form/post')}}" method="post">
                             {{csrf_field()}}
+                            <input type="hidden" value="{{old('id')}}" name="id">
 
                             <div class=" form-group has-feedback">
                                 <input type="text" required="required" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Enter Manager's name" name="name">

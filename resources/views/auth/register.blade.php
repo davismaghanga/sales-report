@@ -7,7 +7,7 @@
             <div class="card" style="background-color: deeppink">
                 <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body" style="background-color: pink">
+                <div class="card-body" style="background-color: deeppink">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -36,6 +36,28 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Region</label>
+
+                            <div class="col-md-6">
+                                {{--<input id="email" type="email" class="form-control" name="region_id"  required>--}}
+                                <select name="region_id" id="" class="form-control {{ $errors->has('region_id') ? ' is-invalid' : '' }}">
+                                    @foreach($regions as $region)
+                                        <option value="{{$region->id}}">{{$region->region}}</option>
+
+                                    @endforeach
+
+                                </select>
+                                @if ($errors->has('region_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('region_id') }}</strong>
+                                    </span>
+                                @endif
+
                             </div>
                         </div>
 

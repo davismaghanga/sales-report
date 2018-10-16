@@ -53,7 +53,6 @@
 
                         <div class="x_content">
 
-                            {{--<p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>--}}
 
                             <div class="table-responsive">
                                 <table class="table table-striped jambo_table bulk_action">
@@ -66,20 +65,21 @@
                                         <th class="column-title">Upcoming event </th>
                                         <th class="column-title">Outcome </th>
                                         <th class="column-title">Region </th>
-                                        <th class="column-title">Subregion </th>
+                                        <th class="column-title">County </th>
                                         <th class="column-title">Orders received </th>
                                         <th class="column-title">Contact's Name </th>
                                         <th class="column-title">Contact's Designation </th>
                                         <th class="column-title">Contact's Phone Number </th>
                                         <th class="column-title">Email </th>
-                                        <th class="column-title no-link last"><span class="nobr">Action</span>
-                                        </th>
+                                        <th class="column-title no-link last"><span class="nobr">Update institution details</span>
+                                        <th class="column-title no-link last"><span class="nobr">View booklists</span></th>
+                                        <th class="column-title no-link last"><span class="nobr">View KYC</span></th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
 
-                                    @foreach($user->institutions as $institution)
+                                    @foreach($institutions as $institution)
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
                                             <td class=""> {{$institution->institution_name}}</td>
@@ -88,14 +88,22 @@
                                             <td class=""> {{$institution->upcoming}}</td>
                                             <td class=""> {{$institution->outcome}}</td>
                                             <td class=""> {{$institution->region->region}}</td>
-                                        <td class=""> {{$institution->subregion->subregion}}</td>
+                                        <td class=""> {{$institution->county->county}}</td>
                                             <td class=""> {{$institution->orders}}</td>
                                             <td class=""> {{$institution->contactName}}</td>
                                             <td class=""> {{$institution->contactDesignation}}</td>
                                             <td class=""> {{$institution->contactNumber}}</td>
                                             <td class=""> {{$institution->contactEmail}}</td>
                                         <td class="">  <a href="{{url('update/institution',$institution->id)}}"> <i class="fa fa-edit"></i></a></td>
-                                        {{--@endforeach--}}
+
+                                        @if($institution->type=="Private Primary" && count($institution->booklists)!=0)
+                                        <td class="">  <a href="{{url('institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
+                                            @else
+                                            <td class="">  NOT APPLICABLE</td>
+                                        @endif
+                                        <td class="">  <a href="{{url('institution/KYC',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
+
+
                                     </tr>
                                     @endforeach
 

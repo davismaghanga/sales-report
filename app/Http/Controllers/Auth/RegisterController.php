@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Region;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'region_id'=>'required',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,9 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $regions=Region::all();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'region_id'=>$data['region_id'],
             'password' => Hash::make($data['password']),
         ]);
     }

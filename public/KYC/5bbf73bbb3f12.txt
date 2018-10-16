@@ -1,0 +1,21 @@
+            <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+
+                    <label for="county">County:</label>
+                    <select class="form-control" name="" id="county"  onchange="getSubCounty(this.value)">
+                        <option selected disabled>Please select a county</option>
+                        @foreach($counties as $county)
+                        <option value="{{$county->id}}">{{$county->county}}</option>
+                            @endforeach
+                    </select>
+
+                </div>
+
+                <div class="form-group col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                    <label for="subcounty"> Sub-county:</label>
+
+                    <select class="form-control" name="" id="subcounty" onchange="getTable(this.value)">
+
+                    </select>
+                </div>
+            </div>

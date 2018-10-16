@@ -22,7 +22,8 @@ class CreateInstitutionsTable extends Migration
             $table->string('outcome');
             $table->float('orders')->nullable();
             $table->integer('region_id');
-            $table->integer('subregion_id');
+            $table->integer('county_id');
+            $table->integer('subcounty_id');
             $table->string('contactName');
             $table->string('contactEmail');
             $table->string('contactDesignation');
