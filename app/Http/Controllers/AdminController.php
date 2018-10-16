@@ -127,6 +127,19 @@ class AdminController extends Controller
         return view('admin.pages.kyc',compact('kyc'));
     }
 
+        if($request->has('id') && request('id')!=null)
+        {
+            $subregion=Subregion::find($request->id);
+        }
+        else {
+            $subregion = new Subregion();
+        }
+
+        $subregion->subregion=$request->subregion;
+        $subregion->region_id = request('region_id');
+        $subregion->save();
+        return back()->with('status','Success! ');
+
     public function downloadKyc($kyc)
     {
         $file=public_path().'/KYC/'.$kyc;
@@ -171,7 +184,7 @@ class AdminController extends Controller
         $user ->save();
 
 
-        return back()->with('status','Profile updated successfully!');
+        return back()->with('status','Success!');
     }
 
     public function allregions()
@@ -397,6 +410,7 @@ class AdminController extends Controller
 
     }
 
+
     public function westernExcel()
     {
         return (new InstitutionsExport(5))->download('Institutions.xlsx');
@@ -416,6 +430,13 @@ class AdminController extends Controller
             ->latest()
             ->get();
         return view('admin.pages.regions.nyanza',compact('institutions','manager','counties','sellers'));
+
+    public function updatesubregion(Subregion $subregion)
+    {
+        Session::flash('_old_input',$subregion);
+        $regions=Region::all();
+
+        return view('admin.pages.subregions',compact('regions'));
 
     }
 

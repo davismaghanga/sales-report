@@ -74,9 +74,15 @@
                                             <td class=""> {{$region->id}}</td>
                                             <td class=""> {{$region->region}}</td>
 
+<<<<<<< HEAD
                                             {{--<td class="">  <a href="{{route('update.region',$region->id)}}"> <i class="fa fa-edit"></i></a>--}}
                                                  {{--&nbsp;  <a href="{{url('/admin/delete/region',$region->id)}}"> <i class="fa fa-trash"></i>  </a>--}}
                                             {{--</td>--}}
+=======
+                                            <td class="">  <a href="{{route('update.region',$region->id)}}"> <i class="fa fa-edit"></i></a>
+                                                 &nbsp;  <a href=""> <i class="fa fa-trash"></i>  </a>
+                                            </td>
+>>>>>>> b961ba4572d3f0e37dd0714b8b81cec67cf141df
 
                                             {{--@endforeach--}}
                                         </tr>
