@@ -103,15 +103,9 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-<<<<<<< HEAD
                             <li><a href="{{route('home')}}"><i class="fa fa-home"></i> HOME</a>
-=======
-                            <li><a><i class="fa fa-home"></i> HOME</a>
->>>>>>> b961ba4572d3f0e37dd0714b8b81cec67cf141df
 
                             </li>
-
-
                             {{--regions--}}
                             <li><a><i class="fa fa-globe"></i> Regions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -126,31 +120,16 @@
                                 </ul>
                             </li>
 
-<<<<<<< HEAD
                             <li><a><i class="fa fa-users"></i> Administrators <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{url('admin/authorize/user')}}"> <i class="fa fa-user"></i> Add an Admin</a></li>
 
                                     {{--edit and delete a regional manager--}}
                                     <li> <a href="{{url('admin/admins')}}"> <i class="fa fa-users"></i> View All Admins</a></li>
-=======
-
-                            {{--regional managers--}}
-                            <li><a><i class="fa fa-users"></i> Regional Managers <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{url('admin/managers-form')}}"> <i class="fa fa-user-plus"></i> Add a Region manager</a></li>
-
-                                    {{--edit and delete a regional manager--}}
-                                    <li> <a href="{{url('admin/reg-managers')}}"> <i class="fa fa-users"></i> View All Regional Managers</a></li>
->>>>>>> b961ba4572d3f0e37dd0714b8b81cec67cf141df
-
                                 </ul>
-                            </li>
 
+                           </li>
 
-                            </li>
-
-<<<<<<< HEAD
                             <li><a><i class="fa fa-building"></i> Institutions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{url('admin/view/public/primary')}}"> <i class="fa fa-building"></i> Public Primary Schools</a></li>
@@ -166,25 +145,8 @@
                                     <li> <a href="{{url('admin/view/counties')}}"> <i class="fa fa-building-o"></i> County Offices</a></li>
                                     <li> <a href="{{url('admin/view/bookshops')}}"> <i class="fa fa-book"></i> Bookshops</a></li>
                                     <li> <a href="{{url('admin/view/ecds')}}"> <i class="fa fa-child"></i> ECD/Kindergartens/Nursery</a></li>
-=======
 
-                            {{--institutions--}}
 
-                            <li><a><i class="fa fa-building"></i> Institutions <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href=""> <i class="fa fa-building"></i> Public Primary Schools</a></li>
-
-                                    <li><a href=""> <i class="fa fa-building"></i> Private Primary Schools</a></li>
-
-                                    {{--edit a region and delete--}}
-                                    <li> <a href=""> <i class="fa fa-building"></i> Private Secondary Schools</a></li>
-
-                                    {{--edit a subregion and delete--}}
-                                    <li> <a href=""> <i class="fa fa-building"></i> NGO's</a></li>
-                                    <li> <a href=""> <i class="fa fa-building"></i> County Office</a></li>
-                                    <li> <a href=""> <i class="fa fa-building"></i> Bookshop</a></li>
-                                    <li> <a href=""> <i class="fa fa-building"></i> ECD/Kindergartens/Nursery</a></li>
->>>>>>> b961ba4572d3f0e37dd0714b8b81cec67cf141df
 
 
                                 </ul>
@@ -193,6 +155,7 @@
 
 
                         </ul>
+
                     </div>
                     <div class="menu_section">
                         <h3>More</h3>

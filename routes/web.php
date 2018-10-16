@@ -48,7 +48,6 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/subsubregion','AdminController@addsubregion');
     Route::get('/view-regions','AdminController@allregions');
     Route::get('/update/region/{region}','AdminController@updateregion')->name('update.region');
-<<<<<<< HEAD
     Route::get('/delete/region/{region}','AdminController@deleteregion');
     Route::get('/update/subregion/{subregion}','AdminController@updatesubregion');
     Route::post('/subregion/post','AdminController@postsubregion');
@@ -94,14 +93,10 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('/nyanza/excel','AdminController@nyanzaExcel');
     Route::get('/northeastern/excel','AdminController@northeasternExcel');
     Route::get('/eastern/excel','AdminController@easternExcel');
-=======
     Route::post('/subregion/post','AdminController@postsubregion');
     Route::get('/view-subregions','AdminController@allsubregions');
     Route::get('update/subregion/{subregion}','AdminController@updatesubregion');
-//    Route::get('/addregmamanger','AdminController@addregmanager');
-//    Route::post('/addregmamanger/post','AdminController@regmanager');
     Route::get('/view-regmanagers','AdminController@allregmanagers');
->>>>>>> b961ba4572d3f0e37dd0714b8b81cec67cf141df
 
 });
 

@@ -23,75 +23,74 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $user=Auth::user();
+        $user = Auth::user();
 
-        return view('admin.pages.home',compact('user'),array('user'=>Auth::user()));
+        return view('admin.pages.home', compact('user'), array('user' => Auth::user()));
     }
 
     public function viewusers()
     {
-        $users=User::where('user_type',0)->get();
-        return view('admin.pages.allusers',compact('users'));
+        $users = User::where('user_type', 0)->get();
+        return view('admin.pages.allusers', compact('users'));
 
     }
 
     public function makeadmin($id)
     {
-        $user=User::find($id);
-        $user->user_type=1;
+        $user = User::find($id);
+        $user->user_type = 1;
         $user->save();
-        return back()->with('status','Admin successfully created');
+        return back()->with('status', 'Admin successfully created');
 
     }
 
     public function delete_regmanager($id)
     {
-        $user=User::find($id);
-        $user->user_type=0;
+        $user = User::find($id);
+        $user->user_type = 0;
         $user->save();
-        return back()->with('status','Now the user has ordinary sales rep privileges');
+        return back()->with('status', 'Now the user has ordinary sales rep privileges');
 
     }
-
 
 
     public function admins()
     {
 
-        $regional_managers=User::where('user_type',1)->get();
+        $regional_managers = User::where('user_type', 1)->get();
 
-        return view('admin.pages.allregmanagers',compact('regional_managers'));
+        return view('admin.pages.allregmanagers', compact('regional_managers'));
     }
 
     public function viewallreps()
     {
-        $reps=User::where('user_type',0)->get();
-        return view('admin.pages.salesreps',compact('reps'));
+        $reps = User::where('user_type', 0)->get();
+        return view('admin.pages.salesreps', compact('reps'));
 
     }
 
     public function rep_visits($id)
     {
-        $msee=User::find($id);
+        $msee = User::find($id);
 
-        $institutions=Institution::where('user_id',$id)->first();
-        $institutions1=Institution::where('user_id',$id)->get();
+        $institutions = Institution::where('user_id', $id)->first();
+        $institutions1 = Institution::where('user_id', $id)->get();
 
-            $counties=County::where('region_id',$institutions->region_id)->get();
+        $counties = County::where('region_id', $institutions->region_id)->get();
 
 
-        return view('admin.pages.regionalinstitutions',compact('institutions1','counties','msee'));
+        return view('admin.pages.regionalinstitutions', compact('institutions1', 'counties', 'msee'));
     }
 
 
     public function subCountiesJson(Request $request)
     {
 
-        $county_id=$request->county_id;
-        $subCounties=SubCounty::where('county_id',$county_id)->get();
+        $county_id = $request->county_id;
+        $subCounties = SubCounty::where('county_id', $county_id)->get();
 
         return response()->json([
-            'sub_counties'=>$subCounties
+            'sub_counties' => $subCounties
         ]);
 
 
@@ -100,97 +99,83 @@ class AdminController extends Controller
 
     public function institutionTable(Request $request)
     {
-        $sub_county_id=$request->input('sub_county_id');
+        $sub_county_id = $request->input('sub_county_id');
 
-        $institution=Institution::where('subcounty_id',$sub_county_id)->get()->load(['region','county','subcounty','user']);
+        $institution = Institution::where('subcounty_id', $sub_county_id)->get()->load(['region', 'county', 'subcounty', 'user']);
         return response()->json([
-            'institutions'=>$institution
+            'institutions' => $institution
         ]);
     }
 
     public function booklists(Institution $institution)
     {
-        $booklists=Booklist::where('institution_id',$institution->id)->get();
-        return view('admin.pages.booklists',compact('booklists'));
+        $booklists = Booklist::where('institution_id', $institution->id)->get();
+        return view('admin.pages.booklists', compact('booklists'));
     }
 
     public function downloadFile($file_name)
     {
-        $file=public_path().'/Booklists/'.$file_name;
+        $file = public_path() . '/Booklists/' . $file_name;
 
         return response()->download($file);
     }
 
     public function kyc(Institution $institution)
     {
-        $kyc=Kyc::where('institution_id',$institution->id)->first();
-        return view('admin.pages.kyc',compact('kyc'));
+        $kyc = Kyc::where('institution_id', $institution->id)->first();
+        return view('admin.pages.kyc', compact('kyc'));
     }
 
-        if($request->has('id') && request('id')!=null)
-        {
-            $subregion=Subregion::find($request->id);
-        }
-        else {
-            $subregion = new Subregion();
-        }
-
-        $subregion->subregion=$request->subregion;
-        $subregion->region_id = request('region_id');
-        $subregion->save();
-        return back()->with('status','Success! ');
 
     public function downloadKyc($kyc)
     {
-        $file=public_path().'/KYC/'.$kyc;
+        $file = public_path() . '/KYC/' . $kyc;
         return response()->download($file);
     }
-
 
 
     public function profile()
     {
 //        $user=Auth::user();
 
-        return view('admin.pages.profile',array('user'=>Auth::user()));
+        return view('admin.pages.profile', array('user' => Auth::user()));
     }
 
     public function editprofile(User $user)
     {
-        Session::flash('_old_input',$user);
+        Session::flash('_old_input', $user);
 
-        return view('admin.pages.profileform',array('user'=>Auth::user()));
+        return view('admin.pages.profileform', array('user' => Auth::user()));
     }
 
     public function updateprofile(Request $request)
     {
-        $validator=Validator::make($request->all(),[
-            'avatar'=>'mimes:jpeg,png,gif,WebP'
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'mimes:jpeg,png,gif,WebP'
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
-        $user=Auth::user();
-        if ($request->hasFile('avatar'))
-        {
-            $avatar=$request->file('avatar');
-            $filename=time(). '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save(public_path('/images/admin/profile-pictures/' . $filename));
+        $user = Auth::user();
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/images/admin/profile-pictures/' . $filename));
 
 //            dd($avatar);
             $user->avatar = $filename;
         }
 
-        $user ->save();
+        $user->save();
 
 
-        return back()->with('status','Success!');
+        return back()->with('status', 'Success!');
     }
 
     public function allregions()
     {
-        $regions=Region::all();
-        return view('admin.pages.allregions',compact('regions'));
+        $regions = Region::all();
+        return view('admin.pages.allregions', compact('regions'));
     }
 //
 //    public function updateregion(Region $region)
@@ -202,17 +187,17 @@ class AdminController extends Controller
 
     public function allsubregions()
     {
-        $counties=County::all();
-        $regions=Region::all();
+        $counties = County::all();
+        $regions = Region::all();
 
-        return view('admin.pages.allsubregions',compact('counties','regions'));
+        return view('admin.pages.allsubregions', compact('counties', 'regions'));
 
     }
 
     public function allsubcounties()
     {
-        $subcounties=SubCounty::all();
-        return view('admin.pages.subcounties',compact('subcounties'));
+        $subcounties = SubCounty::all();
+        return view('admin.pages.subcounties', compact('subcounties'));
 
     }
 //    public function deleteregion( Region $region)
@@ -239,90 +224,86 @@ class AdminController extends Controller
 //    }
 
 
-
-
-
     public function viewpubprimary()
     {
-        $pubpschools=Institution::where('type','Public Primary')
+        $pubpschools = Institution::where('type', 'Public Primary')
             ->latest()
             ->get();
-        return view('admin.pages.institutions.public-primary-schools',compact('pubpschools'));
+        return view('admin.pages.institutions.public-primary-schools', compact('pubpschools'));
 
     }
 
     public function viewpubsec()
     {
-        $pubsschools=Institution::where('type','Public Secondary')->get();
-        return view('admin.pages.institutions.public-secondary-schools',compact('pubsschools'));
+        $pubsschools = Institution::where('type', 'Public Secondary')->get();
+        return view('admin.pages.institutions.public-secondary-schools', compact('pubsschools'));
 
     }
 
     public function viewprivsec()
     {
-        $privatesecondary=Institution::where('type','Private Secondary')
-            ->oldest()
+        $privatesecondary = Institution::where('type', 'Private Secondary')
+            ->latest()
             ->get();
-        return view('admin.pages.institutions.private-secondary-schools',compact('privatesecondary'));
+        return view('admin.pages.institutions.private-secondary-schools', compact('privatesecondary'));
     }
 
     public function viewprivprimary()
     {
-        $privprimschls=Institution::where('type','Private Primary')
+        $privprimschls = Institution::where('type', 'Private Primary')
             ->latest()
             ->get();
-        return view('admin.pages.institutions.private-primary-schools',compact('privprimschls'));
+        return view('admin.pages.institutions.private-primary-schools', compact('privprimschls'));
     }
 
     public function viewngos()
     {
-        $ngos=Institution::where('type','NGO')->get();
-        return view('admin.pages.institutions.ngo',compact('ngos'));
+        $ngos = Institution::where('type', 'NGO')->get();
+        return view('admin.pages.institutions.ngo', compact('ngos'));
     }
 
     public function county()
     {
-        $counties=Institution::where('type','County Office')->get();
-        return view('admin.pages.institutions.county-office',compact('counties'));
+        $counties = Institution::where('type', 'County Office')->get();
+        return view('admin.pages.institutions.county-office', compact('counties'));
     }
 
     public function bookshops()
     {
-        $bookshops=Institution::where('type','Bookshop')->get();
+        $bookshops = Institution::where('type', 'Bookshop')->get();
 //        dd($bookshops);
-        return view('admin.pages.institutions.bookshop',compact('bookshops'));
+        return view('admin.pages.institutions.bookshop', compact('bookshops'));
     }
 
     public function ecds()
     {
-        $ecds=Institution::where('type','ECD/KG/Nursery')->get();
-        return view('admin.pages.institutions.ecds',compact('ecds'));
+        $ecds = Institution::where('type', 'ECD/KG/Nursery')->get();
+        return view('admin.pages.institutions.ecds', compact('ecds'));
 
     }
 
 
-
     public function coast()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',1)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 1)
             ->first();
 
-        $sellers=User::where('region_id',1)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 1)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',1)->get();
-        $institutions=Institution::where('region_id',1)
+        $counties = County::where('region_id', 1)->get();
+        $institutions = Institution::where('region_id', 1)
             ->latest()
             ->get();
 //        $bookshops=Institution::where()
-        return view('admin.pages.regions.coast',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.coast', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
     public function coastExcel(Request $request)
     {
-        $date=$request->reservation;
-        dd($date);
+//        $date = $request->reservation;
+//        dd($date);
 
         return (new InstitutionsExport(1))->download('institutions.xlsx');
     }
@@ -330,16 +311,16 @@ class AdminController extends Controller
     public function riftv()
     {
 
-        $manager=User::where('user_type',1)
-            ->where('region_id',2)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 2)
             ->first();
-        $sellers=User::where('region_id',2)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 2)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',2)->get();
-        $institutions=Institution::where('region_id',2)
+        $counties = County::where('region_id', 2)->get();
+        $institutions = Institution::where('region_id', 2)
             ->latest()
             ->get();
-        return view('admin.pages.regions.rift',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.rift', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -351,20 +332,18 @@ class AdminController extends Controller
     }
 
 
-
-
     public function Nairobi()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',3)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 3)
             ->first();
-        $sellers=User::where('region_id',3)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 3)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',3)->get();
-        $institutions=Institution::where('region_id',3)
+        $counties = County::where('region_id', 3)->get();
+        $institutions = Institution::where('region_id', 3)
             ->latest()
             ->get();
-        return view('admin.pages.regions.nairobi',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.nairobi', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -376,16 +355,16 @@ class AdminController extends Controller
 
     public function Central()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',4)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 4)
             ->first();
-        $sellers=User::where('region_id',4)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 4)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',4)->get();
-        $institutions=Institution::where('region_id',4)
+        $counties = County::where('region_id', 4)->get();
+        $institutions = Institution::where('region_id', 4)
             ->latest()
             ->get();
-        return view('admin.pages.regions.central',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.central', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -397,16 +376,16 @@ class AdminController extends Controller
 
     public function Western()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',5)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 5)
             ->first();
-        $sellers=User::where('region_id',5)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 5)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',5)->get();
-        $institutions=Institution::where('region_id',5)
+        $counties = County::where('region_id', 5)->get();
+        $institutions = Institution::where('region_id', 5)
             ->latest()
             ->get();
-        return view('admin.pages.regions.western',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.western', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -420,23 +399,24 @@ class AdminController extends Controller
 
     public function Nyanza()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',6)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 6)
             ->first();
-        $sellers=User::where('region_id',6)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 6)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',6)->get();
-        $institutions=Institution::where('region_id',6)
+        $counties = County::where('region_id', 6)->get();
+        $institutions = Institution::where('region_id', 6)
             ->latest()
             ->get();
-        return view('admin.pages.regions.nyanza',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.nyanza', compact('institutions', 'manager', 'counties', 'sellers'));
+    }
 
     public function updatesubregion(Subregion $subregion)
     {
-        Session::flash('_old_input',$subregion);
-        $regions=Region::all();
+        Session::flash('_old_input', $subregion);
+        $regions = Region::all();
 
-        return view('admin.pages.subregions',compact('regions'));
+        return view('admin.pages.subregions', compact('regions'));
 
     }
 
@@ -450,16 +430,16 @@ class AdminController extends Controller
 
     public function NorthEastern()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',7)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 7)
             ->first();
-        $sellers=User::where('region_id',7)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 7)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',7)->get();
-        $institutions=Institution::where('region_id',7)
+        $counties = County::where('region_id', 7)->get();
+        $institutions = Institution::where('region_id', 7)
             ->latest()
             ->get();
-        return view('admin.pages.regions.northeastern',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.northeastern', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -471,16 +451,16 @@ class AdminController extends Controller
 
     public function Eastern()
     {
-        $manager=User::where('user_type',1)
-            ->where('region_id',8)
+        $manager = User::where('user_type', 1)
+            ->where('region_id', 8)
             ->first();
-        $sellers=User::where('region_id',8)->where('user_type',0)->get();
+        $sellers = User::where('region_id', 8)->where('user_type', 0)->get();
 
-        $counties=County::where('region_id',8)->get();
-        $institutions=Institution::where('region_id',8)
+        $counties = County::where('region_id', 8)->get();
+        $institutions = Institution::where('region_id', 8)
             ->latest()
             ->get();
-        return view('admin.pages.regions.eastern',compact('institutions','manager','counties','sellers'));
+        return view('admin.pages.regions.eastern', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }
 
@@ -489,11 +469,12 @@ class AdminController extends Controller
         return (new InstitutionsExport(8))->download('Institutions.xlsx');
 
     }
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
