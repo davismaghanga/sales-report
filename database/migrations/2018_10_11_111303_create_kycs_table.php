@@ -15,7 +15,7 @@ class CreateKycsTable extends Migration
     {
         Schema::create('kycs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kyc');
+            $table->string('kyc')->nullable();
             $table->integer('institution_id');
             $table->timestamps();
         });

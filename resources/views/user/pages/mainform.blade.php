@@ -179,7 +179,7 @@
                             <div class="file-field">
                                 <a class="btn-floating peach-gradient mt-0 float-left">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    <input type="file" required="required" name="kyc"  value="{{old('kyc')}}">
+                                    <input type="file"  name="kyc"  value="{{old('kyc')}}">
                                 </a>
 
                             </div>

@@ -66,6 +66,7 @@
                                         <th class="column-title">Outcome </th>
                                         <th class="column-title">Region </th>
                                         <th class="column-title">County </th>
+                                        <th class="column-title">Sub-County </th>
                                         <th class="column-title">Orders received </th>
                                         <th class="column-title">Contact's Name </th>
                                         <th class="column-title">Contact's Designation </th>
@@ -89,19 +90,31 @@
                                             <td class=""> {{$institution->outcome}}</td>
                                             <td class=""> {{$institution->region->region}}</td>
                                         <td class=""> {{$institution->county->county}}</td>
+                                        <td class=""> {{$institution->subcounty->subcounty}}</td>
+
+                                        @if($institution->orders!=null)
                                             <td class=""> {{$institution->orders}}</td>
+                                        @else
+                                            <td class="">No orders taken</td>
+                                        @endif
+
                                             <td class=""> {{$institution->contactName}}</td>
                                             <td class=""> {{$institution->contactDesignation}}</td>
                                             <td class=""> {{$institution->contactNumber}}</td>
                                             <td class=""> {{$institution->contactEmail}}</td>
                                         <td class="">  <a href="{{url('update/institution',$institution->id)}}"> <i class="fa fa-edit"></i></a></td>
 
-                                        @if($institution->type=="Private Primary" && count($institution->booklists)!=0)
+                                        @if(count($institution->booklists)!=0)
                                         <td class="">  <a href="{{url('institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
                                             @else
                                             <td class="">  NOT APPLICABLE</td>
                                         @endif
+
+                                        @if(count($institution->kyc)!=0)
                                         <td class="">  <a href="{{url('institution/KYC',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
+                                        @else
+                                            <td class=""> NOT APPLICABLE</td>
+                                        @endif
 
 
                                     </tr>

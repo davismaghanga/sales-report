@@ -162,7 +162,6 @@ class AdminController extends Controller
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save(public_path('/images/admin/profile-pictures/' . $filename));
 
-//            dd($avatar);
             $user->avatar = $filename;
         }
 
@@ -177,13 +176,7 @@ class AdminController extends Controller
         $regions = Region::all();
         return view('admin.pages.allregions', compact('regions'));
     }
-//
-//    public function updateregion(Region $region)
-//    {
-//        Session::flash('_old_input',$region);
-////        var_dump($region);
-//        return view('admin.pages.regions');
-//    }
+
 
     public function allsubregions()
     {
@@ -200,12 +193,7 @@ class AdminController extends Controller
         return view('admin.pages.subcounties', compact('subcounties'));
 
     }
-//    public function deleteregion( Region $region)
-//    {
-//        $region=Region::find($region->id);
-//        $region->delete();
-//        return back()->with('status','Success!');
-//    }
+
 
 //    public function updatesubregion(Subregion $subregion)
 //    {
@@ -235,7 +223,9 @@ class AdminController extends Controller
 
     public function viewpubsec()
     {
-        $pubsschools = Institution::where('type', 'Public Secondary')->get();
+        $pubsschools = Institution::where('type', 'Public Secondary')
+            ->latest()
+            ->get();
         return view('admin.pages.institutions.public-secondary-schools', compact('pubsschools'));
 
     }
@@ -258,26 +248,34 @@ class AdminController extends Controller
 
     public function viewngos()
     {
-        $ngos = Institution::where('type', 'NGO')->get();
+        $ngos = Institution::where('type', 'NGO')
+            ->latest()
+            ->get();
         return view('admin.pages.institutions.ngo', compact('ngos'));
     }
 
     public function county()
     {
-        $counties = Institution::where('type', 'County Office')->get();
+        $counties = Institution::where('type', 'County Office')
+            ->latest()
+            ->get();
         return view('admin.pages.institutions.county-office', compact('counties'));
     }
 
     public function bookshops()
     {
-        $bookshops = Institution::where('type', 'Bookshop')->get();
+        $bookshops = Institution::where('type', 'Bookshop')
+            ->latest()
+            ->get();
 //        dd($bookshops);
         return view('admin.pages.institutions.bookshop', compact('bookshops'));
     }
 
     public function ecds()
     {
-        $ecds = Institution::where('type', 'ECD/KG/Nursery')->get();
+        $ecds = Institution::where('type', 'ECD/KG/Nursery')
+            ->latest()
+            ->get();
         return view('admin.pages.institutions.ecds', compact('ecds'));
 
     }
@@ -302,10 +300,10 @@ class AdminController extends Controller
 
     public function coastExcel(Request $request)
     {
-//        $date = $request->reservation;
-//        dd($date);
+        $date = $request->reservation;
+//        echo($date);
 
-        return (new InstitutionsExport(1))->download('institutions.xlsx');
+        return (new InstitutionsExport(1,$date))->download('institutions.xlsx');
     }
 
     public function riftv()
@@ -324,9 +322,11 @@ class AdminController extends Controller
 
     }
 
-    public function riftExcel()
+    public function riftExcel(Request $request)
     {
-        return (new InstitutionsExport(2))->download('institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(2,$date))->download('institutions.xlsx');
 
 
     }
@@ -347,9 +347,11 @@ class AdminController extends Controller
 
     }
 
-    public function nairobiExcel()
+    public function nairobiExcel(Request $request)
     {
-        return (new InstitutionsExport(3))->download('institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(3,$date))->download('institutions.xlsx');
 
     }
 
@@ -368,9 +370,11 @@ class AdminController extends Controller
 
     }
 
-    public function centralExcel()
+    public function centralExcel(Request $request)
     {
-        return (new InstitutionsExport(4))->download('Institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(4,$date))->download('Institutions.xlsx');
 
     }
 
@@ -390,9 +394,11 @@ class AdminController extends Controller
     }
 
 
-    public function westernExcel()
+    public function westernExcel(Request $request)
     {
-        return (new InstitutionsExport(5))->download('Institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(5,$date))->download('Institutions.xlsx');
 
     }
 
@@ -411,18 +417,13 @@ class AdminController extends Controller
         return view('admin.pages.regions.nyanza', compact('institutions', 'manager', 'counties', 'sellers'));
     }
 
-    public function updatesubregion(Subregion $subregion)
+
+
+    public function nyanzaExcel(Request $request)
     {
-        Session::flash('_old_input', $subregion);
-        $regions = Region::all();
+        $date = $request->reservation;
 
-        return view('admin.pages.subregions', compact('regions'));
-
-    }
-
-    public function nyanzaExcel()
-    {
-        return (new InstitutionsExport(6))->download('Institutions.xlsx');
+        return (new InstitutionsExport(6,$date))->download('Institutions.xlsx');
 
 
     }
@@ -443,9 +444,11 @@ class AdminController extends Controller
 
     }
 
-    public function northeasternExcel()
+    public function northeasternExcel(Request $request)
     {
-        return (new InstitutionsExport(7))->download('Institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(7,$date))->download('Institutions.xlsx');
 
     }
 
@@ -464,9 +467,11 @@ class AdminController extends Controller
 
     }
 
-    public function easternExcel()
+    public function easternExcel(Request $request)
     {
-        return (new InstitutionsExport(8))->download('Institutions.xlsx');
+        $date = $request->reservation;
+
+        return (new InstitutionsExport(8,$date))->download('Institutions.xlsx');
 
     }
 }

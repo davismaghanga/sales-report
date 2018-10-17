@@ -103,23 +103,15 @@ what i expect from this view
 
                 <div class="align-content-center">
                     <div class="input-group">
-                        <a href="{{url('admin/coast/excel')}}"  class=" btn btn-round btn-success"> Export to Excel</a>
-                        {{--<button class="btn btn-block btn-success">Export to Excel</button>--}}
-
+                        <label for="excel" style="color: green;">
+                            Export to Excel</label>
                     </div>
-
-
                 </div>
-
-
-
                 <div class="title_right">
-                    {{--<div class="well" style="overflow: auto">--}}
-                        {{--<div class="col-md-4">--}}
-                            Date Range Picker
-                            <form method="post" action="{{url('/admin/coast/date')}}" class="form-horizontal">
+                            <form method="post" action="{{url('admin/coast/excel')}}" class="form-horizontal">
                                 {{--<fieldset>--}}
-                                    <div class="control-group">
+                                @csrf
+                                <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend input-group">
                                                 <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
@@ -127,6 +119,7 @@ what i expect from this view
                                             </div>
                                         </div>
                                     </div>
+                                <button type="submit" class="btn btn-success">Export to Excel</button>
                                 {{--</fieldset>--}}
                             </form>
                         {{--</div>--}}
