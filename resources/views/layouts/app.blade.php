@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+        .invalid-feedback{
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

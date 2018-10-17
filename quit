@@ -1,0 +1,23 @@
+[33mb961ba4[m[33m ([m[1;36mHEAD -> [m[1;32mmypc[m[33m)[m HEAD@{0}: checkout: moving from master to mypc
+[33m2674ecb[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{1}: checkout: moving from mypc to master
+[33mb961ba4[m[33m ([m[1;36mHEAD -> [m[1;32mmypc[m[33m)[m HEAD@{2}: checkout: moving from master to mypc
+[33m2674ecb[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{3}: commit: new change in master
+[33m2110e2f[m HEAD@{4}: commit: legit master
+[33m2c3b82f[m HEAD@{5}: pull origin master: Fast-forward
+[33m51e441e[m HEAD@{6}: checkout: moving from my-temporary-work to master
+[33m130f1be[m HEAD@{7}: commit: trial
+[33m1fea221[m HEAD@{8}: commit: my-temporary-work
+[33m51e441e[m HEAD@{9}: checkout: moving from 51e441efe2a06b8b28a1a8ccb098f3efcc8193a3 to my-temporary-work
+[33m51e441e[m HEAD@{10}: checkout: moving from mypc to 51e441efe2a06b8b28a1a8ccb098f3efcc8193a3
+[33mb961ba4[m[33m ([m[1;36mHEAD -> [m[1;32mmypc[m[33m)[m HEAD@{11}: pull origin master: Fast-forward
+[33m777129f[m HEAD@{12}: pull origin master: Fast-forward
+[33m46dd83d[m[33m ([m[1;31morigin/mypc[m[33m)[m HEAD@{13}: pull origin master: Merge made by the 'recursive' strategy.
+[33m731e245[m HEAD@{14}: commit: all changes in mypc
+[33m51e441e[m HEAD@{15}: checkout: moving from master to mypc
+[33m51e441e[m HEAD@{16}: reset: moving to HEAD
+[33m51e441e[m HEAD@{17}: commit: delete for regions
+[33md54f180[m HEAD@{18}: commit: sales rep can update region records
+[33m6633f0a[m HEAD@{19}: commit: sales rep can view institution details of the institution saved
+[33m2afb103[m HEAD@{20}: commit: mainform: uploading of files and saving of institution details
+[33mbb98ced[m HEAD@{21}: commit: relationships, more migrations and salesreport form
+[33m033cc89[m HEAD@{22}: commit (initial): Authentication, admin-adds manager, profile page

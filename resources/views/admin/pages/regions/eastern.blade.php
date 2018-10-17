@@ -100,30 +100,29 @@ what i expect from this view
                     <h3>Total Number of sales-reps: {{count($sellers)}}</h3>
                 </div>
 
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="align-content-center">
                     <div class="input-group">
-                        <a href="{{url('admin/eastern/excel')}}"  class=" btn btn-round btn-success"> Export to Excel</a>
-                        {{--<button class="btn btn-block btn-success">Export to Excel</button>--}}
-
+                        <label for="excel" style="color: green;">
+                            Export to Excel</label>
                     </div>
-
                 </div>
-
-
-
-
+                <div class="title_right">
+                    <form method="post" action="{{url('admin/eastern/excel')}}" class="form-horizontal">
+                        {{--<fieldset>--}}
+                        @csrf
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="input-prepend input-group">
+                                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                    <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Export to Excel</button>
+                        {{--</fieldset>--}}
+                    </form>
+                    {{--</div>--}}
+                </div>
             </div>
 
             <div class="clearfix"></div>

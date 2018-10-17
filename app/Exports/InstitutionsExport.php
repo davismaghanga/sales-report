@@ -10,6 +10,7 @@ namespace App\Exports;
 
 
 use App\Institution;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Query\Builder;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -23,10 +24,15 @@ class InstitutionsExport implements FromView
      * @var int
      */
     private $region_id;
+    /**
+     * @var string
+     */
+    private $date;
 
-    public function __construct(int $region_id)
+    public function __construct(int $region_id,string $date)
     {
         $this->region_id = $region_id;
+        $this->date = $date;
     }
 
 
@@ -36,8 +42,13 @@ class InstitutionsExport implements FromView
 
     public function view(): View
     {
+//        Carbon::parse();
+
+        $start = trim(explode("-",$this->date)[0]);
+        $stop = trim(explode("-",$this->date)[1]);
+
         return view('exports.institutions', [
-            'institutions' => Institution::where('region_id',$this->region_id)->latest()->get()
+            'institutions' => Institution::where('region_id',$this->region_id)->whereBetween('created_at',[$start,$stop])->latest()->get()
         ]);
     }
 }
