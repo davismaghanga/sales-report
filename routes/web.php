@@ -50,21 +50,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     Route::get('/admins','AdminController@admins');
     Route::get('/authorize/user','AdminController@viewusers');
     Route::get('/authorize/admin/status/{user}','AdminController@makeadmin');
-//    Route::get('/update/regmanager/{regional_manager}','AdminController@update_regmanager');
     Route::get('delete/admin/{admin}','AdminController@delete_regmanager');
-//    Route::get('/addregion','AdminController@addregion');
-//    Route::post('/addregion/post','AdminController@postregion');
-//    Route::get('/subsubregion','AdminController@addsubregion');
+
     Route::get('/view-regions','AdminController@allregions');
-//    Route::get('/update/region/{region}','AdminController@updateregion')->name('update.region');
-//    Route::get('/delete/region/{region}','AdminController@deleteregion');
-//    Route::get('/update/subregion/{subregion}','AdminController@updatesubregion');
-//    Route::post('/subregion/post','AdminController@postsubregion');
+
     Route::get('/view-subregions','AdminController@allsubregions');
-//    Route::get('/delete/subregion/{subregion}','AdminController@deletesubregion');
     Route::get('/view-subcounties','AdminController@allsubcounties');
-//    Route::get('/view-managers','AdminController@allregmanagers');
-    //following are routes for getting all institutional details
+    //following are routes for getting all (different)institutional details
     Route::get('/view/public/primary','AdminController@viewpubprimary');
     Route::get('/view/public/secondary','AdminController@viewpubsec');
     Route::get('/view/private/secondary','AdminCOntroller@viewprivsec');
@@ -94,14 +86,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
         //excel
 
     Route::post('/coast/excel','AdminController@coastExcel');
-    Route::get('/central/excel','AdminController@centralExcel');
-    Route::get('/rift/excel','AdminController@riftExcel');
-    Route::get('/nairobi/excel','AdminController@nairobiExcel');
-    Route::get('/western/excel','AdminController@westernExcel');
-    Route::get('/nyanza/excel','AdminController@nyanzaExcel');
-    Route::get('/northeastern/excel','AdminController@northeasternExcel');
-    Route::get('/eastern/excel','AdminController@easternExcel');
-    Route::post('/subregion/post','AdminController@postsubregion');
+    Route::post('/central/excel','AdminController@centralExcel');
+    Route::post('/rift/excel','AdminController@riftExcel');
+    Route::post('/nairobi/excel','AdminController@nairobiExcel');
+    Route::post('/western/excel','AdminController@westernExcel');
+    Route::post('/nyanza/excel','AdminController@nyanzaExcel');
+    Route::post('/northeastern/excel','AdminController@northeasternExcel');
+    Route::post('/eastern/excel','AdminController@easternExcel');
+//    Route::get('/subregion/post','AdminController@postsubregion');
     Route::get('/view-subregions','AdminController@allsubregions');
 
 });
