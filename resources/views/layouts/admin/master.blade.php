@@ -230,8 +230,11 @@
 
         <!-- footer content -->
         <footer>
+            <div class="pull-left">
+                Storymoja Africa
+            </div>
             <div class="pull-right">
-                Story Moja Africa <a href="https://storymojaafrica.co.ke">Storymojaafrica.co.ke</a>
+                 <a href="https://storymojaafrica.co.ke">Storymojaafrica.co.ke</a>
             </div>
             <div class="clearfix"></div>
         </footer>

@@ -44,8 +44,8 @@ class InstitutionsExport implements FromView
     {
 //        Carbon::parse();
 
-        $start = trim(explode("-",$this->date)[0]);
-        $stop = trim(explode("-",$this->date)[1]);
+        $start = Carbon::parse(trim(explode("-",$this->date)[0]));
+        $stop = Carbon::parse(trim(explode("-",$this->date)[1]))->endOfDay() ;
 
         return view('exports.institutions', [
             'institutions' => Institution::where('region_id',$this->region_id)->whereBetween('created_at',[$start,$stop])->latest()->get()
