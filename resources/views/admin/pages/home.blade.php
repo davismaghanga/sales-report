@@ -78,6 +78,8 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title">Created at</th>
+
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Activity </th>
                                     <th class="column-title">Upcoming </th>
@@ -92,8 +94,7 @@
                                     <th class="column-title">Contact Designation </th>
                                     <th class="column-title">Contact Number </th>
                                     <th class="column-title">Sales Representative </th>
-                                    {{--<th class="column-title no-link last"><span class="nobr">Action</span>--}}
-                                    </th>
+
                                 </tr>
                                 </thead>
 
@@ -102,6 +103,8 @@
                                 @foreach($institutions as $institution)
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
+                                        <td class=""> {{$institution->created_at}}</td>
+
 
                                         <td class=""> {{$institution->institution_name}}</td>
                                         <td class=""> {{$institution->activity}}</td>

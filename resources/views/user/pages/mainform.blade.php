@@ -185,6 +185,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12"> Report <small>Upload sales rep report</small> :</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="file-field">
+                                <a class="btn-floating peach-gradient mt-0 float-left">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    <input type="file"  name="report"  value="{{old('report')}}">
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
 
 
 

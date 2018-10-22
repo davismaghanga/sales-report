@@ -75,6 +75,7 @@
                                         <th class="column-title no-link last"><span class="nobr">Update institution details</span>
                                         <th class="column-title no-link last"><span class="nobr">View booklists</span></th>
                                         <th class="column-title no-link last"><span class="nobr">View KYC</span></th>
+                                        <th class="column-title no-link last"><span class="nobr">View Report</span></th>
                                     </tr>
                                     </thead>
 
@@ -115,8 +116,11 @@
                                         @else
                                             <td class=""> NOT APPLICABLE</td>
                                         @endif
-
-
+                                        @if(count($institution->report)!=0)
+                                            <td class="">  <a href="{{url('institution/report',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
+                                            @else
+                                            <td class=""> NOT APPLICABLE</td>
+                                            @endif
                                     </tr>
                                     @endforeach
 

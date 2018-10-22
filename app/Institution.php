@@ -36,4 +36,9 @@ class Institution extends Model
         return $this->hasOne(Kyc::class);
     }
 
+    public function report()
+    {
+        return $this->hasOne(Report::class);
+    }
+
 }

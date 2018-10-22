@@ -7,6 +7,7 @@ use App\County;
 use App\Exports\InstitutionsExport;
 use App\Institution;
 use App\Kyc;
+use App\Report;
 use App\Region;
 use App\SubCounty;
 use App\User;
@@ -131,6 +132,19 @@ class AdminController extends Controller
     {
         $file = public_path() . '/KYC/' . $kyc;
         return response()->download($file);
+    }
+
+    public function report(Institution $institution)
+    {
+        $report=Report::where('institution_id',$institution->id)->first();
+        return view('admin.pages.report',compact('report'));
+
+    }
+    public function downloadReport($report)
+    {
+        $file=public_path().'/Reports/'.$report;
+        return response()->download($file);
+
     }
 
 
@@ -303,7 +317,7 @@ class AdminController extends Controller
         $date = $request->reservation;
 //        echo($date);
 
-        return (new InstitutionsExport(1,$date))->download('institutions.xlsx');
+        return (new InstitutionsExport(1,$date))->download('Institutions.xlsx');
     }
 
     public function riftv()
@@ -326,7 +340,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(2,$date))->download('institutions.xlsx');
+        return (new InstitutionsExport(2,$date))->download('Institutions.xlsx');
 
 
     }
@@ -351,7 +365,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(3,$date))->download('institutions.xlsx');
+        return (new InstitutionsExport(3,$date))->download('Institutions.xlsx');
 
     }
 
