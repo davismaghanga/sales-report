@@ -10,6 +10,7 @@ use App\Subregion;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -45,6 +46,8 @@ class HomeController extends Controller
         else
         {
             $institutions=Institution::all();
+//            $institutions=DB::table('institutions')->orderBy('id','desc')
+//                ->get();
             return view('admin.pages.home',compact('institutions'));
         }
 

@@ -5,21 +5,16 @@ namespace App\Http\Controllers;
 use App\Booklist;
 use App\County;
 use App\Institution;
-//use App\institutionBooklist;
 use App\Kyc;
 use App\Region;
-//use App\RegionalManager;
 use App\Report;
 use App\SubCounty;
-//use App\Subregion;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
-use PHPUnit\Framework\Constraint\Count;
 
 
 class UserController extends Controller
