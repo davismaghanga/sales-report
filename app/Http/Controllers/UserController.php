@@ -9,6 +9,7 @@ use App\Institution;
 use App\Kyc;
 use App\Region;
 //use App\RegionalManager;
+use App\Report;
 use App\SubCounty;
 //use App\Subregion;
 use App\User;
@@ -93,7 +94,7 @@ class UserController extends Controller
     public function fill(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'booklist','kyc'   => 'mimes:doc,pdf,docx,zip,txt'
+            'booklist','kyc','report'   => 'mimes:doc,pdf,docx,zip,txt'
         ]);
 
         if ($validator->fails()){
@@ -161,6 +162,19 @@ class UserController extends Controller
             $kycustomer->save();
 
         }
+        if ($request->hasFile('report'))
+        {
+            $report=$request->file('report');
+            $extension=$report->getClientOriginalExtension();
+            $filename=uniqid().'.'.$extension;
+            $location=public_path('Reports/');
+            $report->move($location,$filename);
+
+            $reportofrep=new Report();
+            $reportofrep->report=$filename;
+            $reportofrep->institution_id=$institution->id;
+            $reportofrep->save();
+        }
 
 
         return back()->with('status','Success!');
@@ -212,6 +226,18 @@ class UserController extends Controller
     public function downloadkyc($kyc)
     {
         $file=public_path().'/KYC/'.$kyc;
+        return response()->download($file);
+
+    }
+
+    public function report(Institution $institution)
+    {
+        $report=Report::where('institution_id',$institution->id)->first();
+        return view('user.pages.report',compact('report'));
+    }
+    public function downloadreport($report)
+    {
+        $file=public_path().'/Reports/'.$report;
         return response()->download($file);
 
     }

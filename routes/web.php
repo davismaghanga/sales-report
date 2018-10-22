@@ -35,6 +35,9 @@ Route::group(['middleware'=>'verified'],function (){
     Route::get('institution/booklists/download/{file_name}','UserController@downloadFile');
     Route::get('institution/KYC/{institution}','UserController@kyc');
     Route::get('institution/kyc/download/{kyc}','UserController@downloadkyc');
+    Route::get('/institution/report/{institution}','UserController@report');
+    Route::get('institution/report/download/{report}','UserController@downloadreport');
+
 
 });
 
@@ -73,6 +76,11 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     Route::get('/institution/booklists/download/{file_name}','AdminController@downloadFile');
     Route::get('/institution/kyc/{institution}','AdminController@kyc');
     Route::get('/institution/kyc/download/{kyc}','AdminController@downloadKyc');
+    Route::get('/institution/report/{institution}','AdminController@report');
+    Route::get('/institution/report/download/{report}','AdminController@downloadReport');
+
+
+
 
     //regions
     Route::get('/coast/details','AdminController@coast');

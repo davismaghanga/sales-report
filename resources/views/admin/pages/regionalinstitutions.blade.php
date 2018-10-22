@@ -142,6 +142,7 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title">Created at  (YY-MM-DD) </th>
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Type of institution </th>
                                     <th class="column-title">Region </th>
@@ -151,10 +152,10 @@
                                     <th class="column-title">Contact Email </th>
                                     <th class="column-title">Contact Designation </th>
                                     <th class="column-title">Contact Number </th>
-                                    <th class="column-title">Created at  (YY-MM-DD) </th>
                                     <th class="column-title">Sales representative </th>
                                     <th class="column-title no-link last"><span class="nobr">Booklist</span>
                                     <th class="column-title no-link last"><span class="nobr">KYC</span>
+                                    <th class="column-title no-link last"><span class="nobr">Report</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -164,7 +165,7 @@
                                 @foreach($institutions1 as $institution)
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
-
+                                        <td class=""> {{$institution->created_at}}</td>
                                         <td class=""> {{$institution->institution_name}}</td>
                                         <td class=""> {{$institution->type}}</td>
                                         <td class=""> {{$institution->region->region}}</td>
@@ -174,7 +175,6 @@
                                         <td class=""> {{$institution->contactEmail}}</td>
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
-                                        <td class=""> {{$institution->created_at}}</td>
                                         <td class=""> {{$institution->user->name}}</td>
 
                                         @if(count($institution->booklists)!=0)
@@ -185,6 +185,12 @@
 
                                         @if(count($institution->kyc)!=0)
                                         <td ><a href="{{url('admin/institution/kyc',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
+                                            @else
+                                            <td class="">Not applicable</td>
+                                            @endif
+
+                                        @if(count($institution->report)!=0)
+                                            <td ><a href="{{url('admin/institution/report',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
                                             @else
                                             <td class="">Not applicable</td>
                                             @endif
