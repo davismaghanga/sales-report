@@ -35,17 +35,27 @@
                                 <div class="profile_img">
                                     <div id="crop-avatar">
                                         <!-- Current avatar -->
-                                        <img class="img-responsive avatar-view" src="images/user/profile-pictures/{{$user->avatar}}" alt="Avatar" title="Change the avatar">
+                                        <img class="img-responsive avatar-view" src="{{asset('images/user/profile-pictures/'.$user->avatar)}}" alt="Avatar" title="Change the avatar">
+                                        {{--<img class="img-responsive avatar-view" src="images/user/profile-pictures/{{$user->avatar}}" alt="Avatar" title="Change the avatar">--}}
                                     </div>
                                 </div>
                                 <h3>{{Auth::user()->name}}</h3>
 
                                 <ul class="list-unstyled user_data">
+
+                                    @if($user->location!=null)
                                     <li><i class="fa fa-map-marker user-profile-icon"></i> {{$user->location}}
+                                        @else
+                                            <i class="fa fa-map-marker user-profile-icon"> Not specified</i>
+                                            @endif
                                     </li>
 
                                     <li>
+                                        @if($user->contacts!=null)
                                         <i class="fa fa-phone user-profile-icon"></i> {{$user->contacts}}
+                                            @else
+                                        <i class="fa fa-phone user-profile-icon"> Not specified</i>
+                                            @endif
                                     </li>
 
                                     <li>

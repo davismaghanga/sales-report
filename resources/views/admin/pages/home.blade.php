@@ -75,11 +75,12 @@
                         </div>
                         <div class="x_content">
 
-                            <table id="" class="table table-striped table-bordered">
+                            <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title">#</th>
                                     <th class="column-title">Created at</th>
-
+                                    <th class="column-title">Sales Representative </th>
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Activity </th>
                                     <th class="column-title">Upcoming </th>
@@ -93,7 +94,6 @@
                                     <th class="column-title">Contact Email </th>
                                     <th class="column-title">Contact Designation </th>
                                     <th class="column-title">Contact Number </th>
-                                    <th class="column-title">Sales Representative </th>
 
                                 </tr>
                                 </thead>
@@ -103,9 +103,9 @@
                                 @foreach($institutions as $institution)
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
+                                        <td class=""> {{$institution->id}}</td>
                                         <td class=""> {{$institution->created_at}}</td>
-
-
+                                        <td class=""> {{$institution->user->name}}</td>
                                         <td class=""> {{$institution->institution_name}}</td>
                                         <td class=""> {{$institution->activity}}</td>
                                         <td class=""> {{$institution->upcoming}}</td>
@@ -126,7 +126,6 @@
                                         <td class=""> {{$institution->contactEmail}}</td>
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
-                                        <td class=""> {{$institution->user->name}}</td>
 
                                         {{--@if($institution->type=='Private Primary')--}}
                                             {{--<td class="">  <a href=""> <i class="fa fa-book"></i> Booklist</a> </td>--}}

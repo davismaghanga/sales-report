@@ -130,6 +130,8 @@ class UserController extends Controller
             {
 //                var_dump($file);
                 $extension=$file->getClientOriginalExtension();
+
+                //gives the file a unique name
                 $filename=uniqid(). '.'.$extension;
                 $location=public_path('Booklists/');
                 $file->move($location,$filename);

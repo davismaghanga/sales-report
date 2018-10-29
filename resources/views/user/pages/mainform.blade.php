@@ -94,28 +94,17 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <textarea class="form-control" rows="3" placeholder="What activity took place?"  required= "required"   value="{{old('activity')}}"    name="activity"></textarea>
 
-                        {{--<input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="What activity took place?" name="activity" value="{{old('activity')}}">--}}
-                        {{--<span class="fa fa-gamepad form-control-feedback left" aria-hidden="true"></span>--}}
+
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <textarea class="form-control" rows="3" placeholder="Any upcoming events?" name="upcoming"  required="required"   value="{{old('upcoming')}}" ></textarea>
-                        {{--<span class="fa fa-user-plus form-control-feedback left" aria-hidden="true"></span>--}}
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <textarea class="form-control" rows="3" placeholder="Outcome/Follow up needed" name="outcome" required="required"   value="{{old('outcome')}}" ></textarea>
-                        {{--<span class="fa fa-user-plus form-control-feedback left" aria-hidden="true"></span>--}}
                     </div>
-                    {{--<div>--}}
-                        {{--<label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12"> Region</label>--}}
 
-                        {{--<select  required="required"   name="region_id" id="">--}}
-                            {{--@foreach($regions as $region)--}}
-                            {{--<option value="{{$region->id}}">{{$region->region}}</option>--}}
-                            {{--@endforeach--}}
-                        {{--</select>--}}
-                    {{--</div>--}}
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label style="color: deeppink" class="control-label col-md-3 col-sm-3 col-xs-12"> County</label>

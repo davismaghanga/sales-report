@@ -34,7 +34,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>County Offices  </h3>
+                    <h3>ECD/Kindergarten/Nursery  </h3>
                 </div>
 
                 <div class="title_right">
@@ -77,6 +77,7 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title"># </th>
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Activity </th>
                                     <th class="column-title">Upcoming </th>
@@ -99,6 +100,7 @@
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
 
+                                        <td class=""> {{$ecd->id}}</td>
                                         <td class=""> {{$ecd->institution_name}}</td>
                                         <td class=""> {{$ecd->activity}}</td>
                                         <td class=""> {{$ecd->upcoming}}</td>
