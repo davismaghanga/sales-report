@@ -3,14 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Booklist;
+use App\CentralSchool;
+use App\CoastSchool;
 use App\County;
+use App\EasternSchool;
 use App\Exports\InstitutionsExport;
+use App\Imports\CentralImports;
+use App\Imports\CoastImports;
+use App\Imports\EasternImports;
+use App\Imports\NairobiImports;
+use App\Imports\NorthEasternImports;
+use App\Imports\NyanzaImport;
+use App\Imports\RiftImports;
+use App\Imports\WesternImport;
 use App\Institution;
 use App\Kyc;
+use App\NairobiSchool;
+use App\NorthEasternSchool;
+use App\NyanzaSchool;
 use App\Report;
 use App\Region;
+use App\RiftSchool;
 use App\SubCounty;
 use App\User;
+use App\WesternSchool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -81,6 +97,13 @@ class AdminController extends Controller
 
 
         return view('admin.pages.regionalinstitutions', compact('institutions1', 'counties', 'msee'));
+    }
+
+    public function userProfile($id)
+    {
+        $msee=User::find($id);
+        return view('admin.pages.userProfile',compact('msee'));
+
     }
 
 
@@ -312,11 +335,11 @@ class AdminController extends Controller
 
     }
 
+    // Excel Exports
+
     public function coastExcel(Request $request)
     {
         $date = $request->reservation;
-//        echo($date);
-
         return (new InstitutionsExport(1,$date))->download('Institutions.xlsx');
     }
 
@@ -488,6 +511,195 @@ class AdminController extends Controller
         return (new InstitutionsExport(8,$date))->download('Institutions.xlsx');
 
     }
+
+
+
+    //Excel Imports
+
+    //Rift Valley
+
+    public function riftImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'riftImport' => 'mimes:xlsx,'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        Excel::import(new RiftImports(),request()->file('riftImport'));
+        return back()->with('status','Saved!');
+    }
+
+    public function riftView()
+    {
+        $schools=RiftSchool::paginate(50);
+        return view('admin.pages.schools.riftvalley',compact('schools'));
+    }
+
+
+    // Central
+
+    public function centralView()
+    {
+        $schools=CentralSchool::paginate(50);
+        return view('admin.pages.schools.central',compact('schools'));
+
+    }
+
+    public function centralImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'centralImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new CentralImports(),request()->file('centralImport'));
+        return back()->with('status','Saved!');
+
+
+    }
+
+    // Coast
+    public function coastView()
+    {
+        $schools=CoastSchool::paginate(50);
+        return view('admin.pages.schools.coast',compact('schools'));
+
+    }
+
+    public function coastImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'coastImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new CoastImports(),request()->file('coastImport'));
+        return back()->with('status','Saved!');
+
+
+
+    }
+
+
+    //Eastern
+    public function easternView()
+    {
+        $schools=EasternSchool::paginate(50);
+        return view('admin.pages.schools.eastern',compact('schools'));
+
+
+    }
+
+    public function easternImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'easternImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new EasternImports(),request()->file('easternImport'));
+        return back()->with('status','Saved!');
+
+    }
+
+
+    //Nairobi
+    public function nairobiView()
+    {
+        $schools=NairobiSchool::paginate(50);
+        return view('admin.pages.schools.nairobi',compact('schools'));
+
+
+    }
+
+    public function nairobiImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nairobiImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new NairobiImports(),request()->file('nairobiImport'));
+        return back()->with('status','Saved!');
+
+
+    }
+
+    // Nyanza
+
+    public function nyanzaView()
+    {
+        $schools=NyanzaSchool::paginate(50);
+        return view('admin.pages.schools.nyanza',compact('schools'));
+
+    }
+
+    public function nyanzaImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nyanzaImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new NyanzaImport(),request()->file('nyanzaImport'));
+        return back()->with('status','Saved!');
+
+    }
+
+    //Western
+    public function westernView()
+    {
+        $schools=WesternSchool::paginate(50);
+        return view('admin.pages.schools.western',compact('schools'));
+
+    }
+
+    public function westernImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'westernImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new WesternImport(),request()->file('westernImport'));
+        return back()->with('status','Saved!');
+
+
+    }
+
+
+    public function northeasternView()
+    {
+        $schools=NorthEasternSchool::paginate(50);
+        return view('admin.pages.schools.northeastern',compact('schools'));
+
+
+    }
+
+    public function northeasternImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'northeasternImport' => 'mimes:xlsx,'
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+        Excel::import(new NorthEasternImports(),request()->file('northeasternImport'));
+        return back()->with('status','Saved!');
+
+
+    }
+
+
 }
 
 

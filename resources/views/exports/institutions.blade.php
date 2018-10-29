@@ -1,7 +1,9 @@
+
+<p style="color: #2E2E00"> NUMBER OF BOOKSHOPS : {{count($bookshops)}}</p>
 <table>
     <thead>
     <tr>
-        <th style="text-decoration-color: black">Region</th>
+        <th>Region</th>
         <th>Institution Name</th>
         <th>Type</th>
         <th>Activity</th>
@@ -16,7 +18,6 @@
         <th>Contact Number</th>
         <th>Sales representative</th>
         <th>Created at (Y-M-D)</th>
-
 
     </tr>
     </thead>

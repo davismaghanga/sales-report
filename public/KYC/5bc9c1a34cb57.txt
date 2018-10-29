@@ -1,0 +1,37 @@
+function getSubCounty(id) {
+            var url='{{url('admin/view/sub_counties_json')}}';
+            axios.post(url,{'county_id':id})
+                .then(function (response) {
+                    $('#subcounty').empty();
+                    $('#subcounty').append('<option disabled selected>Please select a sub county</option>');
+
+                    $.each(response.data.sub_counties,function (key, value) {
+                        $('#subcounty').append("<option value='"+value.id+"'>"+value.subcounty+"</option>");
+
+                    });
+                    // console.log(response.data.sub_counties);
+                })
+        }
+
+
+        function getTable(id) {
+            tabke.clear().draw();
+           let url22='{{url('admin/view/get_institution_table')}}';
+           axios.post(url22,{'sub_county_id':id})
+               .then(function (response) {
+
+                   $.each(response.data.institutions,function (key, value) {
+                       tabke.row.add([
+                           value.institution_name,
+                           value.type,
+                           value.region.region,
+                           value.county.county,
+                           value.subcounty.subcounty,
+                           '<i class="fa fa-pencil"></i>'
+
+                       ]);
+
+                   });
+                   tabke.draw();
+               })
+        }

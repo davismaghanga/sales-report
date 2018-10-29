@@ -77,6 +77,7 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title"># </th>
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Activity </th>
                                     <th class="column-title">Upcoming </th>
@@ -99,6 +100,7 @@
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
 
+                                        <td class=""> {{$ngo->id}}</td>
                                         <td class=""> {{$ngo->institution_name}}</td>
                                         <td class=""> {{$ngo->activity}}</td>
                                         <td class=""> {{$ngo->upcoming}}</td>

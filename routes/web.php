@@ -70,6 +70,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     Route::get('/view/ecds','AdminController@ecds');
     Route::get('/view/allreps','AdminController@viewallreps');
     Route::get('/view/rep-visits/{id}','AdminController@rep_visits');
+    Route::get('/view/profile/{id}','AdminController@userProfile');
+
+
     Route::post('/view/sub_counties_json','AdminController@subCountiesJson');
     Route::post('/view/get_institution_table','AdminController@institutionTable');
     Route::get('/institution/booklists/{institution}','AdminController@booklists');
@@ -91,7 +94,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     Route::get('/nyanza','AdminController@Nyanza');
     Route::get('/northeastern','AdminController@NorthEastern');
     Route::get('/eastern','AdminController@Eastern');
-        //excel
+
+        //excel exports
 
     Route::post('/coast/excel','AdminController@coastExcel');
     Route::post('/central/excel','AdminController@centralExcel');
@@ -101,8 +105,49 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     Route::post('/nyanza/excel','AdminController@nyanzaExcel');
     Route::post('/northeastern/excel','AdminController@northeasternExcel');
     Route::post('/eastern/excel','AdminController@easternExcel');
-//    Route::get('/subregion/post','AdminController@postsubregion');
+
+
     Route::get('/view-subregions','AdminController@allsubregions');
+
+    //Excel Imports
+
+    //rift valley
+    Route::post('/rift/import','AdminController@riftImport');
+    Route::get('/rift/view/schools','AdminController@riftView');
+
+    //central
+    Route::get('/central/view/schools','AdminController@centralView');
+    Route::post('/central/import','AdminController@centralImport');
+
+    //coast
+    Route::get('/coast/view/schools','AdminController@coastView');
+    Route::post('/coast/import','AdminController@coastImport');
+
+    //eastern
+    Route::get('/eastern/view/schools','AdminController@easternView');
+    Route::post('/eastern/import','AdminController@easternImport');
+
+
+    //nairobi
+    Route::get('/nairobi/view/schools','AdminController@nairobiView');
+    Route::post('/nairobi/import','AdminController@nairobiImport');
+
+    //northeastern
+    Route::get('/northeastern/view/schools','AdminController@northeasternView');
+    Route::post('/northeastern/import','AdminController@northeasternImport');
+
+    //nyanza
+    Route::get('/nyanza/view/schools','AdminController@nyanzaView');
+    Route::post('/nyanza/import','AdminController@nyanzaImport');
+
+
+    //western
+    Route::get('/western/view/schools','AdminController@westernView');
+    Route::post('/western/import','AdminController@westernImport');
+
+
+
+
 
 });
 

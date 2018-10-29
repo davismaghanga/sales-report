@@ -1,13 +1,3 @@
-{{--
-what i expect from this view
-1. coast regional manager
-2. all institutions in coast with the necessary fields including the rep who uploaded a particular institution
-4. the total number of sales rep in the region
-
-
---}}
-
-
 @extends('layouts.admin.master')
 @section('scripts')
     <!-- Datatables -->
@@ -85,43 +75,55 @@ what i expect from this view
 
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h1> Institutions  in Rift Valley Region</h1>
-                    <h2>Manager incharge:
-                        @if($manager==null)
 
-                            No manager assigned yet
-                        @else
-                        {{$manager->name}}
-                        @endif
+            <div class="row">
+                <div class="col-md-6">
+                    {{--<div class="page-title">--}}
+                        <div class="title_left">
+                            <h1> Institutions  in Rift Valley Region</h1>
+                            <h2>Manager incharge:
+                                @if($manager==null)
 
-                    </h2>
-                    <h3>Total Number of sales-reps: {{count($sellers)}}</h3>
+                                    No manager assigned yet
+                                @else
+                                    {{$manager->name}}
+                                @endif
+
+                            </h2>
+                            <h3>Total Number of sales-reps: {{count($sellers)}}</h3>
+                        </div>
+
                 </div>
-
-                <div class="align-content-center">
-                    <div class="input-group">
-                        <label for="excel" style="color: green;">
-                            Export to Excel</label>
-                    </div>
-                </div>
-                <div class="title_right">
-                    <form method="post" action="{{url('admin/rift/excel')}}" class="form-horizontal">
-                        {{--<fieldset>--}}
-                        @csrf
-                        <div class="control-group">
-                            <div class="controls">
-                                <div class="input-prepend input-group">
-                                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                    <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="" />
-                                </div>
+                <div class="col-md-6">
+                    <div class="title-right">
+                        <div class="align-content-center">
+                            <div class="input-group">
+                                <label for="excel" style="color: green;">
+                                    Export to Excel</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Export to Excel</button>
-                    </form>
+                        <form method="post" action="{{url('admin/rift/excel')}}" class="form-horizontal">
+                            {{--<fieldset>--}}
+                            @csrf
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                        <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">Export to Excel</button>
+                        </form>
+                    </div>
+
                 </div>
+
+                </div>
+
             </div>
+
+
 
             <div class="clearfix"></div>
 
@@ -232,6 +234,6 @@ what i expect from this view
 
             </div>
         </div>
-    </div>
+    
 @endsection
 

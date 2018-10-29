@@ -82,12 +82,14 @@
 
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                        </div>
+                        <a class="btn btn-success" href="{{url('admin/view/profile/'.$msee->id)}}"><i class="fa fa-edit m-right-xs"></i>View Profile</a>
+
+                        {{--<div class="input-group">--}}
+                            {{--<input type="text" class="form-control" placeholder="Search for...">--}}
+                            {{--<span class="input-group-btn">--}}
+                      {{--<button class="btn btn-default" type="button">Go!</button>--}}
+                    {{--</span>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
@@ -142,6 +144,7 @@
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
+                                    <th class="column-title"># </th>
                                     <th class="column-title">Created at  (YY-MM-DD) </th>
                                     <th class="column-title">Institution Name </th>
                                     <th class="column-title">Type of institution </th>
@@ -165,6 +168,7 @@
                                 @foreach($institutions1 as $institution)
                                     <tr class="even pointer">
                                         {{--@foreach($user->institutions as $institution)--}}
+                                        <td class=""> {{$institution->id}}</td>
                                         <td class=""> {{$institution->created_at}}</td>
                                         <td class=""> {{$institution->institution_name}}</td>
                                         <td class=""> {{$institution->type}}</td>

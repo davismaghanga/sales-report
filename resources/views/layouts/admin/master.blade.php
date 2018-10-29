@@ -9,7 +9,7 @@
     <link rel="icon" href="{{asset('images/icon.png')}}" type="image/ico" />
     {{--<link rel="icon" href="images/favicon.ico" type="image/ico" />--}}
 
-    <title>Story Moja </title>
+    <title>Storymoja </title>
 
     <!-- Bootstrap -->
     <link href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -131,6 +131,7 @@
 
                            </li>
 
+
                             <li><a><i class="fa fa-building"></i> Institutions <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{url('admin/view/public/primary')}}"> <i class="fa fa-building"></i> Public Primary Schools</a></li>
@@ -162,7 +163,7 @@
                         <h3>More</h3>
                         <ul class="nav side-menu">
                             <li><a href="{{url('admin/view/allreps')}}"><i class="fa fa-users"></i> Sales reps and Institutions uploaded</a></li>
-                            <li><a><i class="fa fa-globe"></i> Regional Reports</a>
+                            <li><a><i class="fa fa-globe"></i> Regional Reports  <span class="fa fa-chevron-down"></span>  </a>
                             <ul class="nav child_menu">
                                 <li><a href="{{url('admin/coast/details')}}"> Coast </a></li>
                                 <li><a href="{{url('admin/rift')}}"> Rift Valley </a></li>
@@ -175,6 +176,20 @@
 
 
                             </ul>
+                            </li>
+                            <li><a> <i class="fa fa-building"></i> Schools <span class="fa fa-chevron-down" ></span> </a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{url('admin/coast/view/schools')}}"> <i class="fa fa-globe"></i> Coast </a></li>
+                                    <li><a href="{{url('admin/rift/view/schools')}}"> <i class="fa fa-globe"></i> Rift Valley </a></li>
+                                    <li><a href="{{url('admin/nairobi/view/schools')}}"> <i class="fa fa-globe"></i> Nairobi </a></li>
+                                    <li><a href="{{url('admin/central/view/schools')}}"> <i class="fa fa-globe"></i> Central </a></li>
+                                    <li><a href="{{url('admin/western/view/schools')}}"> <i class="fa fa-globe"></i> Western </a></li>
+                                    <li><a href="{{url('admin/nyanza/view/schools')}}"> <i class="fa fa-globe"></i> Nyanza </a></li>
+                                    <li><a href="{{url('admin/northeastern/view/schools')}}"> <i class="fa fa-globe"></i> North Eastern </a></li>
+                                    <li><a href="{{url('admin/eastern/view/schools')}}"> <i class="fa fa-globe"></i> Eastern </a></li>
+
+                                </ul>
+
                             </li>
                         </ul>
                     </div>
