@@ -73,4 +73,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        $regions=Region::all();
+        return view('auth.register',compact('regions'));
+    }
 }
