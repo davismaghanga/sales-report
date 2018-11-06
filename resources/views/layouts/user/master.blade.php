@@ -85,7 +85,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{asset('images/user/profile-pictures/'.Auth::user()->avatar)}}" alt="..." class="img-circle profile_img">
+                        <img src="{{asset('images/user/profile-pictures/'.Auth::user()->avatar)}}" alt="Avatar" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -100,11 +100,7 @@
 
             <!-- sidebar menu -->
 
-                {{--<style>--}}
-                    {{--a:hover{--}}
-                        {{--background-color: deeppink !important;--}}
-                    {{--}--}}
-                {{--</style>--}}
+
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>General</h3>
@@ -117,22 +113,11 @@
                             </li>
                             <li><a href="{{url('institutions')}}"><i class="fa fa-clone"></i> Institutions visited </a>
                             </li>
+                            <li><a href="{{url('orderpage')}}"> <i class="fa fa-shopping-bag"> </i> Place Order </a> </li>
 
 
                         </ul>
                     </div>
-                    {{--<div class="menu_section">--}}
-                        {{--<h3>Live On</h3>--}}
-                        {{--<ul class="nav side-menu">--}}
-                            {{--<li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>--}}
-                            {{--</li>--}}
-                            {{--<li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>--}}
-
-                            {{--</li>--}}
-                            {{--<li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
 
                 </div>
                 <!-- /sidebar menu -->
@@ -152,7 +137,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('images/user/profile-pictures/'.Auth::user()->avatar)}}" alt=""> {{Auth::user()->name}}
+                                <img src="{{asset('images/user/profile-pictures/'.Auth::user()->avatar)}}" alt="Avatar"> {{Auth::user()->name}}
                                 {{--<img src="images/user/profile-pictures/{{Auth::user()->avatar}}" alt=""> {{Auth::user()->name}}--}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
@@ -174,6 +159,14 @@
                         </li>
 
                         {{--the messages icon in the top right nav bar--}}
+
+                        <li role="presentation">
+                            <a href="{{url('shopping-cart')}}">
+                                <i class="fa fa-shopping-cart"> Shopping Cart</i>
+                                <span class="badge bg-green">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                            </a>
+
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -187,7 +180,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-left">
-                Story Moja Africa
+                Storymoja Africa
             </div>
             <div class="pull-right">
                <a href="https://storymojaafrica.co.ke">Storymojaafrica.co.ke</a>

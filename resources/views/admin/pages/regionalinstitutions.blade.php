@@ -43,12 +43,16 @@
 
         function getTable(id) {
             tabke.clear().draw();
-           let url22='{{url('admin/view/get_institution_table')}}';
-           axios.post(url22,{'sub_county_id':id})
+           let url22='{{url('admin/view/getInstitutionTable2')}}';
+           let u_id = '{{$msee->id}}'
+           axios.post(url22,{'sub_county_id':id,'u_id':u_id})
                .then(function (response) {
 
                    $.each(response.data.institutions,function (key, value) {
+                       console.log(value);
                        tabke.row.add([
+                           value.id,
+                           value.created_at,
                            value.institution_name,
                            value.type,
                            value.region.region,
@@ -58,9 +62,25 @@
                            value.contactEmail,
                            value.contactDesignation,
                            value.contactNumber,
-                           value.created_at,
+                           value.orders!=null ?
+                           value.orders:
+                           'None',
                            value.user.name,
-                           '<i class="fa fa-pencil"></i>'
+                           value.booklists.length>0?
+                            '<a href="'+'{{url('admin/institution/booklists')}}'+'/'+value.id+'">View BookLists</a>':
+                               'Not applicable'
+                           ,
+
+                           value.kyc===null  || value.kyc===''?
+                               'Not applicable':
+                               '<a href="'+'{{url('admin/institution/kyc')}}'+'/'+value.id+'">View KYC</a>'
+
+                   ,
+                           value.report===null ||  value.report===''?
+                               'Not applicable':
+                               '<a href="'+'{{url('admin/institution/report')}}'+'/'+value.id+'">View Report</a>'
+
+                           ,
 
                        ]);
 
@@ -155,6 +175,7 @@
                                     <th class="column-title">Contact Email </th>
                                     <th class="column-title">Contact Designation </th>
                                     <th class="column-title">Contact Number </th>
+                                    <th class="column-title">Orders </th>
                                     <th class="column-title">Sales representative </th>
                                     <th class="column-title no-link last"><span class="nobr">Booklist</span>
                                     <th class="column-title no-link last"><span class="nobr">KYC</span>
@@ -179,7 +200,14 @@
                                         <td class=""> {{$institution->contactEmail}}</td>
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
-                                        <td class=""> {{$institution->user->name}}</td>
+
+                                        @if($institution->orders)
+
+                                        <td class=""> {{$institution->orders}}</td>
+                                        @else
+                                            <td class="">None</td>
+                                        @endif
+                                            <td class=""> {{$institution->user->name}}</td>
 
                                         @if(count($institution->booklists)!=0)
                                         <td class=""><a href="{{url('admin/institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>

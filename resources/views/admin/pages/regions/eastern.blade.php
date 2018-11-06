@@ -1,13 +1,3 @@
-{{--
-what i expect from this view
-1. coast regional manager
-2. all institutions in coast with the necessary fields including the rep who uploaded a particular institution
-4. the total number of sales rep in the region
-
-
---}}
-
-
 @extends('layouts.admin.master')
 @section('scripts')
     <!-- Datatables -->
@@ -64,13 +54,15 @@ what i expect from this view
                             value.region.region,
                             value.county.county,
                             value.subcounty.subcounty,
+                            value.orders!=null ?
+                                value.orders:
+                                'None',
                             value.contactName,
                             value.contactEmail,
                             value.contactDesignation,
                             value.contactNumber,
                             value.created_at,
                             value.user.name,
-                            '<i class="fa fa-pencil"></i>'
 
                         ]);
 
@@ -196,7 +188,6 @@ what i expect from this view
                                 <th class="column-title">Contact Number </th>
                                 <th class="column-title">Created at  (YY-MM-DD) </th>
                                 <th class="column-title">Sales representative </th>
-                                <th class="column-title no-link last"><span class="nobr">Action</span>
                                 </th>
                             </tr>
                             </thead>
@@ -224,7 +215,6 @@ what i expect from this view
                                     <td class=""> {{$institution->contactNumber}}</td>
                                     <td class=""> {{$institution->created_at}}</td>
                                     <td class=""> {{$institution->user->name}}</td>
-                                    <td class=""> <i class="fa fa-pencil"></i></td>
 
 
                                 </tr>

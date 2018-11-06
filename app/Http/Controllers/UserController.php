@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Booklist;
 use App\County;
 use App\Institution;
@@ -236,6 +237,13 @@ class UserController extends Controller
     {
         $file=public_path().'/Reports/'.$report;
         return response()->download($file);
+
+    }
+
+    public function orderpage()
+    {
+        $books=Book::all();
+        return view('user.pages.orderpage',compact('books'));
 
     }
 

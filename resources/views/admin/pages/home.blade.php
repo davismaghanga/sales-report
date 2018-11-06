@@ -127,11 +127,7 @@
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
 
-                                        {{--@if($institution->type=='Private Primary')--}}
-                                            {{--<td class="">  <a href=""> <i class="fa fa-book"></i> Booklist</a> </td>--}}
-                                            {{--@else--}}
-                                            {{--<td class="">Not applicable </td>--}}
-                                            {{--@endif--}}
+
                                     </tr>
                                 @endforeach
 

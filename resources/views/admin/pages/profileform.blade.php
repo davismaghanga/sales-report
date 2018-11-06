@@ -8,7 +8,7 @@
             <div class="col-md-6 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Update your profile <small>Tell us more about yourself</small></h2>
+                        <h2>Update your profile picture </h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -36,7 +36,7 @@
 
                             {{-- weka pp hapa--}}
                             <div class=" form-group">
-                                <input type="file" class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar">
+                                <input type="file" class="form-control" id="inputSuccess2" placeholder="Upload profile picture" name="avatar" required>
                             </div>
                             @if(count($errors->all()))
 

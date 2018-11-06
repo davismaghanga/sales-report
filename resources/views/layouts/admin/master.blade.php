@@ -86,7 +86,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{asset('images/admin/profile-pictures/'.Auth::user()->avatar)}}" alt="..." class="img-circle profile_img">
+                        <img src="{{asset('images/admin/profile-pictures/'.Auth::user()->avatar)}}" alt="Avatar" class="img-circle profile_img">
                         {{--<img src="images/admin/profile-pictures/{{Auth::user()->avatar}}" alt="..." class="img-circle profile_img">--}}
                     </div>
                     <div class="profile_info">
@@ -189,8 +189,10 @@
                                     <li><a href="{{url('admin/eastern/view/schools')}}"> <i class="fa fa-globe"></i> Eastern </a></li>
 
                                 </ul>
-
                             </li>
+
+                            <li><a href="{{url('admin/inventory')}}" > <i class="fa fa-book"></i>Storymoja Books </a></li>
+                            <li><a href="{{url('admin/orders')}}" > <i class="fa fa-reorder"></i>Orders </a></li>
                         </ul>
                     </div>
 
