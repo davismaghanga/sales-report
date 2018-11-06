@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::group(['middleware'=>'verified'],function (){
+Route::group(['middleware'=>['auth','verified']],function (){
 
     Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
     Route::get('/profile','UserController@profile');
@@ -38,6 +38,23 @@ Route::group(['middleware'=>'verified'],function (){
     Route::get('/institution/report/{institution}','UserController@report');
     Route::get('institution/report/download/{report}','UserController@downloadreport');
 
+    Route::get('orderpage','UserController@orderpage');
+    Route::get('add-to-cart/{id}','BookController@getAddToCart');
+    Route::get('add-ten/{id}','BookController@getAddTenToCart');
+    Route::get('add-hundred/{id}','BookController@getAdd100ToCart');
+
+    Route::get('reduceOne/{id}','BookController@getReduceByOne');
+    Route::get('removeBook/{id}','BookController@getRemoveItem');
+    Route::get('shopping-cart','BookController@getCart');
+
+    Route::get('checkoutpage','BookController@checkoutPage');
+    Route::post('checkoutpage','BookController@postCheckOut');
+
+    Route::post('getDiscount/NewPrice','BookController@getNewPrice');
+
+//    Route::get('sendNotification','BookController@sendNotification');
+
+
 
 });
 
@@ -46,7 +63,7 @@ Route::group(['middleware'=>'verified'],function (){
 
 
 //admin routes
-Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin','verified']],function(){
     Route::get('/profile','AdminController@profile');
     Route::get('/edit-profile','AdminController@editprofile');
     Route::post('/edit-profile/post','AdminController@updateprofile');
@@ -75,6 +92,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
 
     Route::post('/view/sub_counties_json','AdminController@subCountiesJson');
     Route::post('/view/get_institution_table','AdminController@institutionTable');
+
+    Route::post('/view/getInstitutionTable2','AdminController@getInstitutionTable2');
     Route::get('/institution/booklists/{institution}','AdminController@booklists');
     Route::get('/institution/booklists/download/{file_name}','AdminController@downloadFile');
     Route::get('/institution/kyc/{institution}','AdminController@kyc');
@@ -144,6 +163,20 @@ Route::group(['prefix'=>'admin','middleware'=>'admin','verified'],function(){
     //western
     Route::get('/western/view/schools','AdminController@westernView');
     Route::post('/western/import','AdminController@westernImport');
+
+    //inventory/books
+    Route::post('/import/books','AdminController@bookImport');
+    Route::get('/inventory','AdminController@bookpage');
+
+    //delete book
+    Route::get('/delete/book/{id}','AdminController@deleteBook');
+
+    //orders
+
+    Route::get('orders','AdminController@getOrders');
+    Route::get('order_id/{id}','AdminController@getOrder');
+    Route::get('/order/process/{id}','AdminController@process');
+
 
 
 

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Booklist;
 use App\CentralSchool;
 use App\CoastSchool;
 use App\County;
 use App\EasternSchool;
 use App\Exports\InstitutionsExport;
+use App\Imports\BookImport;
 use App\Imports\CentralImports;
 use App\Imports\CoastImports;
 use App\Imports\EasternImports;
@@ -21,6 +23,7 @@ use App\Kyc;
 use App\NairobiSchool;
 use App\NorthEasternSchool;
 use App\NyanzaSchool;
+use App\Order;
 use App\Report;
 use App\Region;
 use App\RiftSchool;
@@ -28,7 +31,9 @@ use App\SubCounty;
 use App\User;
 use App\WesternSchool;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
@@ -56,8 +61,19 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->user_type = 1;
+
+        try{
+            $old_path=public_path('/images/user/profile-pictures/' . $user->avatar);
+            $new_path=public_path('images/admin/profile-pictures/' . $user->avatar);
+            if($user->avatar!='default.jpg')
+                File::move($old_path, $new_path);
+        }
+        catch(\Exception $e){
+
+        }
+
         $user->save();
-        return back()->with('status', 'Admin successfully created');
+        return back()->with('status', 'Admin successfully created!');
 
     }
 
@@ -65,8 +81,20 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->user_type = 0;
+
+        try{
+            $old_path=public_path('/images/admin/profile-pictures/' . $user->avatar);
+            $new_path=public_path('images/user/profile-pictures/' . $user->avatar);
+            if($user->avatar!='default.jpg')
+                File::move($old_path, $new_path);
+        }
+        catch(\Exception $e){
+
+        }
+
+
         $user->save();
-        return back()->with('status', 'Now the user has ordinary sales rep privileges');
+        return back()->with('status', 'Ordinary User!');
 
     }
 
@@ -99,6 +127,24 @@ class AdminController extends Controller
         return view('admin.pages.regionalinstitutions', compact('institutions1', 'counties', 'msee'));
     }
 
+    public function getInstitutionTable2(Request $request)
+    {
+        $sub_county_id = $request->input('sub_county_id');
+        $user_id=$request->input('u_id');
+
+        $institution = Institution::where('subcounty_id', $sub_county_id)
+            ->where('user_id',$user_id)
+            ->get()->load(['region', 'county', 'subcounty', 'user','booklists','kyc','report']);
+        return response()->json([
+            'institutions' => $institution
+        ]);
+    }
+
+
+
+
+
+
     public function userProfile($id)
     {
         $msee=User::find($id);
@@ -130,6 +176,8 @@ class AdminController extends Controller
             'institutions' => $institution
         ]);
     }
+
+
 
     public function booklists(Institution $institution)
     {
@@ -340,7 +388,7 @@ class AdminController extends Controller
     public function coastExcel(Request $request)
     {
         $date = $request->reservation;
-        return (new InstitutionsExport(1,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(1,$date))->download('Coast Institutions Report.xlsx');
     }
 
     public function riftv()
@@ -363,7 +411,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(2,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(2,$date))->download('Rift Valley Institutions Report.xlsx');
 
 
     }
@@ -388,7 +436,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(3,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(3,$date))->download('Nairobi Institutions Report.xlsx');
 
     }
 
@@ -411,7 +459,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(4,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(4,$date))->download('Central Institutions Report.xlsx');
 
     }
 
@@ -435,7 +483,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(5,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(5,$date))->download('Western Institutions Report.xlsx');
 
     }
 
@@ -460,7 +508,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(6,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(6,$date))->download('Nyanza Institutions Report.xlsx');
 
 
     }
@@ -485,7 +533,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(7,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(7,$date))->download('North Eastern Institutions Report.xlsx');
 
     }
 
@@ -508,7 +556,7 @@ class AdminController extends Controller
     {
         $date = $request->reservation;
 
-        return (new InstitutionsExport(8,$date))->download('Institutions.xlsx');
+        return (new InstitutionsExport(8,$date))->download('Eastern Institutions Report.xlsx');
 
     }
 
@@ -698,6 +746,82 @@ class AdminController extends Controller
 
 
     }
+
+    public function bookpage()
+    {
+        $books=Book::all();
+        return view('admin.pages.books',compact('books'));
+
+    }
+
+    public function bookImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'books' => 'mimes:xlsx,'
+        ]);
+        if($validator->fails()){
+            return back()->withErrors($validator);
+
+        }
+        Excel::import(new BookImport(),request()->file('books'));
+        return back()->with('status','Saved!');
+
+    }
+
+    public function deleteBook($id)
+    {
+        $book=Book::find($id);
+        $book->delete();
+        return back()->with('status','Successfully deleted!');
+
+    }
+
+    public function getOrders()
+    {
+        $orders=Order::all();
+        return view('admin.pages.orders',compact('orders'));
+    }
+
+    public function getOrder(Request $request,$id)
+    {
+        $order=Order::find($id);
+        $cart=unserialize($order->cart);
+        $products=$cart->items;
+        $totalPrice=$cart->totalPrice;
+
+
+        // Get current page form url e.x. &page=1
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+        // Create a new Laravel collection from the array data
+        $itemCollection = collect($products);
+
+        // Define how many items we want to be visible in each page
+        $perPage = 2;
+
+        // Slice the collection to get the items to display in current page
+        $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+
+        // Create our paginator and pass it to the view
+        $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
+
+        // set url path for generted links
+        $paginatedItems->setPath($request->url());
+
+//        return view('items_view', ['items' => $paginatedItems]);
+
+        return view('admin.pages.that-order',['products'=>$paginatedItems,'order'=>$order,'totalPrice'=>$totalPrice]);
+
+    }
+
+    public function process($id)
+    {
+        $order=Order::find($id);
+        $order->invoiced=true;
+        $order->save();
+        return back()->with('status','Order now processed!');
+    }
+
 
 
 }

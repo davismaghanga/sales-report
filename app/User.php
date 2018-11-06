@@ -46,6 +46,16 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword
 
     }
 
+    public function subConty()
+    {
+        return $this->belongsToMany(SubCounty::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 
 
 }

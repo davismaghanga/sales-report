@@ -54,13 +54,15 @@
                             value.region.region,
                             value.county.county,
                             value.subcounty.subcounty,
+                            value.orders!=null ?
+                                value.orders:
+                                'None',
                             value.contactName,
                             value.contactEmail,
                             value.contactDesignation,
                             value.contactNumber,
                             value.created_at,
                             value.user.name,
-                            '<i class="fa fa-pencil"></i>'
 
                         ]);
 
@@ -214,7 +216,6 @@
                                     <td class=""> {{$institution->contactNumber}}</td>
                                     <td class=""> {{$institution->created_at}}</td>
                                     <td class=""> {{$institution->user->name}}</td>
-                                    <td class=""> <i class="fa fa-pencil"></i></td>
 
 
                                 </tr>

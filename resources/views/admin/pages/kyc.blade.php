@@ -55,7 +55,6 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <a href="{{url('admin/institution/kyc/download/'. $kyc->kyc)}}">{{$kyc->kyc}}</a>
-                                    {{--{{$booklist->}}--}}
 
                                 </div>
 

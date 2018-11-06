@@ -46,9 +46,9 @@
                             <div class="col-md-6">
                                 {{--<input id="email" type="email" class="form-control" name="region_id"  required>--}}
                                 <select name="region_id" id="" class="form-control {{ $errors->has('region_id') ? ' is-invalid' : '' }}">
-                                    @foreach($regions as $region)
+                                    <option selected disabled> Please select region assigned</option>
+                                @foreach($regions as $region)
                                         <option value="{{$region->id}}">{{$region->region}}</option>
-
                                     @endforeach
 
                                 </select>
