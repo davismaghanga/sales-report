@@ -89,15 +89,15 @@ class UserController extends Controller
 //method for filling the main form
     public function fill(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'booklist'   => 'mimes:,pdf,docx,zip,txt',
-            'report'   => 'mimes:,pdf,docx,zip,txt',
-            'kyc'   => 'mimes:,pdf,docx,zip,txt'
-        ]);
+//        $validator = Validator::make($request->all(), [
+//            'booklist'   => 'mimes:,pdf,docx,zip,txt',
+//            'report'   => 'mimes:,pdf,docx,zip,txt',
+//            'kyc'   => 'mimes:,pdf,docx,zip,txt'
+//        ]);
 
-        if ($validator->fails()){
-            return back()->withErrors($validator);
-        }
+//        if ($validator->fails()){
+//            return back()->withErrors($validator);
+//        }
 
 
         if($request->id==null){
