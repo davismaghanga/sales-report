@@ -209,20 +209,20 @@
                                         @endif
                                             <td class=""> {{$institution->user->name}}</td>
 
-                                        @if(count($institution->booklists)!=0)
-                                        <td class=""><a href="{{url('admin/institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
+                                        @if($institution->booklists->count()!=0)
+                                        <td class=""><a href="{{url('admin/institution/booklists/',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
                                             @else
                                             <td class="">Not applicable</td>
                                         @endif
 
-                                        @if(count($institution->kyc)!=0)
-                                        <td ><a href="{{url('admin/institution/kyc',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
+                                        @if($institution->kyc->count()!=0)
+                                        <td ><a href="{{url('admin/institution/kyc/',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
                                             @else
                                             <td class="">Not applicable</td>
                                             @endif
 
-                                        @if(count($institution->report)!=0)
-                                            <td ><a href="{{url('admin/institution/report',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
+                                        @if($institution->report->count()!=0)
+                                            <td ><a href="{{url('admin/institution/report/',$institution->id)}}"> <i class="fa fa-file"> </i></a></td>
                                             @else
                                             <td class="">Not applicable</td>
                                             @endif

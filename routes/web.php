@@ -79,7 +79,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin','verified']],funct
     //following are routes for getting all (different)institutional details
     Route::get('/view/public/primary','AdminController@viewpubprimary');
     Route::get('/view/public/secondary','AdminController@viewpubsec');
-    Route::get('/view/private/secondary','AdminCOntroller@viewprivsec');
+    Route::get('/view/private/secondary','AdminController@viewprivsec');
     Route::get('/view/private/primary','AdminController@viewprivprimary');
     Route::get('/view/ngos','AdminController@viewngos');
     Route::get('/view/counties','AdminController@county');
