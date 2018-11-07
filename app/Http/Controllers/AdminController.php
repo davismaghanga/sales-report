@@ -274,7 +274,7 @@ class AdminController extends Controller
 
     public function allsubcounties()
     {
-        $subcounties = SubCounty::all();
+        $subcounties = SubCounty::paginate(50);
         return view('admin.pages.subcounties', compact('subcounties'));
 
     }
