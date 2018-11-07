@@ -106,22 +106,22 @@
                                             <td class=""> {{$institution->contactEmail}}</td>
 
                                         @if($institution->booklists()->count()!=0)
-                                        <td class="">  <a href="{{url('institution/booklists/',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
+                                        <td class="">  <a href="{{url('institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>
                                             @else
                                             <td class="">  NOT APPLICABLE</td>
                                         @endif
 
                                         @if($institution->kyc()->count()!=0)
-                                        <td class="">  <a href="{{url('institution/KYC/',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
+                                        <td class="">  <a href="{{url('institution/KYC',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
                                         @else
                                             <td class=""> NOT APPLICABLE</td>
                                         @endif
                                         @if($institution->report()->count()!=0)
-                                            <td class="">  <a href="{{url('institution/report/',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
+                                            <td class="">  <a href="{{url('institution/report',$institution->id)}}"> <i class="fa fa-file-pdf-o"></i></a> </td>
                                             @else
                                             <td class=""> NOT APPLICABLE</td>
                                             @endif
-                                        <td class="">  <a href="{{url('update/institution/',$institution->id)}}"> <i class="fa fa-edit"></i></a></td>
+                                        <td class="">  <a href="{{url('update/institution',$institution->id)}}"> <i class="fa fa-edit"></i></a></td>
 
                                     </tr>
                                     @endforeach
