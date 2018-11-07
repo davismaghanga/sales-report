@@ -90,9 +90,9 @@ class UserController extends Controller
     public function fill(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'booklist'   => 'mimes:doc,pdf,docx,zip,txt',
-            'report'   => 'mimes:doc,pdf,docx,zip,txt',
-            'kyc'   => 'mimes:doc,pdf,docx,zip,txt'
+            'booklist'   => 'mimes:,pdf,docx,zip,txt',
+            'report'   => 'mimes:,pdf,docx,zip,txt',
+            'kyc'   => 'mimes:,pdf,docx,zip,txt'
         ]);
 
         if ($validator->fails()){
