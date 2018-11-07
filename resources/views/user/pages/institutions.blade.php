@@ -126,9 +126,13 @@
                                     </tr>
                                     @endforeach
 
+
                                     </tbody>
+
                                 </table>
                             </div>
+                            {{$institutions->links()}}
+
 
 
                         </div>

@@ -183,7 +183,7 @@ class UserController extends Controller
     public function view()
     {
        $user=Auth::user();
-       $institutions=Institution::where('user_id',$user->id)->latest()->get();
+       $institutions=Institution::where('user_id',$user->id)->latest()->paginate(10);
        $regions=Region::all();
        $counties=County::all();
 

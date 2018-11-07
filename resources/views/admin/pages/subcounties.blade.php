@@ -84,6 +84,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{$subcounties->links()}}
 
 
                         </div>

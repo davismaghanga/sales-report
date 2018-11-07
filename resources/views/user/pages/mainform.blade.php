@@ -62,7 +62,7 @@
 
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                         <label style="color: deeppink"   class="control-label">Institution type</label>
-                            <select class="form-control" name="type" required="required">
+                            <select class="form-control" name="type" required>
                                 <option selected disabled>Select type of institution</option>
                                 <option value="Private Primary">Private Primary</option>
                                 <option value="Private Secondary">Private Secondary</option>

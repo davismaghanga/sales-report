@@ -94,7 +94,7 @@
                                         @if(count($rep->institutions) != 0)
                                         <td class=""> <a href="{{url('admin/view/rep-visits/'. $rep->id)}}">{{$rep->name}} </a></td>
                                         @else
-                                        <td class=""> <a href="">{{$rep->name}} </a></td>
+                                        <td class=""> <a>{{$rep->name}} </a></td>
                                         @endif
                                         <td class=""> {{$rep->email}}</td>
                                         <td class=""> {{$rep->region->region}}</td>
