@@ -15,16 +15,17 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pdiscount')->nullable();
+            $table->boolean('courierIsChecked')->nullable();
             $table->integer('rep_id');
             $table->text('cart');
             $table->string('institution_name');
             $table->string('type');
-            $table->integer('discount')->nullable();
             $table->integer('county_id');
             $table->integer('subcounty_id');
             $table->string('contactName');
             $table->string('contactNumber');
-            $table->string('contactEmail');
+            $table->string('contactEmail')->nullable();
             $table->boolean('invoiced')->default(false);
             $table->timestamps();
         });

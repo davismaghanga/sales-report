@@ -378,7 +378,7 @@ class AdminController extends Controller
         $institutions = Institution::where('region_id', 1)
             ->latest()
             ->get();
-//        $bookshops=Institution::where()
+//        dd($institutions);
         return view('admin.pages.regions.coast', compact('institutions', 'manager', 'counties', 'sellers'));
 
     }

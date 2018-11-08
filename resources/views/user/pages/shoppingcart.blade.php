@@ -1,16 +1,4 @@
 @extends('layouts.user.master')
-
-{{--@section('scripts')--}}
-    {{--<script>--}}
-    {{----}}
-    {{--function getNewPrice(discount){--}}
-        {{--var url='{{url('getDiscount/NewPrice')}}';--}}
-        {{--axios.post(url,{'discount':discount})--}}
-    {{--}--}}
-    {{--</script>--}}
-
-{{--@endsection--}}
-
 @section('content')
 
     <div class="right_col" role="main">
@@ -50,29 +38,42 @@
         <div class="clearfix"></div>
 <div class="row">
         <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-            <strong> Total: {{$totalPrice}}</strong>
-
-
-            {{--<div class="pull-right">--}}
-                {{--<label> Discount:</label>--}}
-                {{--<input type="number" name="discount" onchange="getNewPrice(this.value)">--}}
-            {{--</div>--}}
-            {{--<strong class="pull-right"> Discount: </strong>--}}
-
-
-
+            <strong id="total_price"> Total: {{$totalPrice}}</strong>
         </div>
-
-
-
 </div>
         <div class="clearfix"></div>
 
-<div class="row">
-        <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-            <a href="{{url('checkoutpage')}}" role="button" class="btn btn-success">Checkout</a>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+
+                <form action="{{url('discount/post')}}" method="post" >
+                    @csrf
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h4 class="card-title">Discount</h4>
+                            <input type="hidden" name="totalPrice" value="{{$totalPrice}}">
+                            <input type="number" name="discount" class="form-control">
+                            <br>
+
+                            <button type="submit" class="btn btn-primary btn-round">Next</button>
+
+                            {{--<a href="#" role="button"class=" btn btn-primary">Next</a>--}}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
         </div>
-</div>
+            <div class="clearfix"></div>
+
+
+{{--<div class="row">--}}
+        {{--<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">--}}
+            {{--<a href="{{url('checkoutpage')}}" role="button" class="btn btn-success">Checkout</a>--}}
+        {{--</div>--}}
+{{--</div>--}}
+
+
         <div class="clearfix"></div>
 
         @else
@@ -87,3 +88,6 @@
 
 @endsection
 
+@section('scripts')
+
+@stop

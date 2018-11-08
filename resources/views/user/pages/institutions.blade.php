@@ -103,7 +103,12 @@
                                             <td class=""> {{$institution->contactName}}</td>
                                             <td class=""> {{$institution->contactDesignation}}</td>
                                             <td class=""> {{$institution->contactNumber}}</td>
+
+                                        @if($institution->contactEmail!=null)
                                             <td class=""> {{$institution->contactEmail}}</td>
+                                        @else
+                                            <td class=""> Not applicable</td>
+                                        @endif
 
                                         @if($institution->booklists()->count()!=0)
                                         <td class="">  <a href="{{url('institution/booklists',$institution->id)}}"> <i class="fa fa-book"></i></a></td>

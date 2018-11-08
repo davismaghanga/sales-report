@@ -19,16 +19,32 @@
                              {{$order->contactNumber}}
                              <br>
                              <label>Email Address:</label>
+                             @if($order->contactEmail==null)
+                                 Not applicable
+                             @else
                              {{$order->contactEmail}}
+                             @endif
                              <br>
-                             <label>Proposed Discount:</label>
 
-                             @if($order->discount==null)
-                                 0%
-                                 @else
-                             {{$order->discount}}%
-                                 @endif
+                             <label>Discount offered:</label>
+
+                             @if($order->pdiscount!=null)
+                             {{$order->pdiscount}}%
+                             @else
+                                 No discount offered
+                             @endif
                              <br>
+
+                             <label>Courier charges</label>
+
+                             @if($order->courierIsChecked==true)
+                                 Courier charges applied
+
+                             @else
+                                 No courier charges applied
+                             @endif
+                             <br>
+
 
                              <label>Sales rep involved:</label>
                              {{$order->user->name}}
@@ -64,7 +80,7 @@
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-                    <strong> Total: {{$totalPrice}}</strong>
+                    <strong> Total (V.A.T inclusive): {{$totalPrice}}</strong>
 
                 </div>
             </div>

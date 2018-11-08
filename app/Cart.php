@@ -70,6 +70,37 @@ class Cart
 
     }
 
+    public function addFive($item,$id)
+    {
+        //if its a new cart then the new item is added to cart
+        $storedItem=['qty'=>0,'price'=>$item->price_excl_vat,'item'=>$item];
+
+        //if there are items in the cart;
+        if($this->items)
+        {
+            //if that particular item already exists. so basically the assumption is that this function(the one below) searches my cart for
+            //any book with the id passed in the parameter
+            if(array_key_exists($id,$this->items))
+            {
+
+                //if the book is found add that book/item to the storeditem variable which is also an associative array.
+                //Remember we are overriding the storeditem variable, not adding elements to the array.
+                $storedItem=$this->items[$id];
+            }
+        }
+
+
+        //for both old and new cart increment the number of books/items
+        $storedItem['qty']+=5;
+        $storedItem['price']= $item->price_excl_vat * $storedItem['qty'] ;
+
+        //add the item into the cart
+        $this->items[$id]=$storedItem;
+        $this->totalQty+=5;
+        $this->totalPrice+=(($item->price_excl_vat)*5);
+
+    }
+
     public function addTen($item,$id)
     {
         //if its a new cart then the new item is added to cart

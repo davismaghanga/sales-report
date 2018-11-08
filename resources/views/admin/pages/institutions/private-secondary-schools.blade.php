@@ -116,7 +116,12 @@
                                         <td class=""> {{$item->region->region}}</td>
                                         <td class=""> {{$item->county->county}}</td>
                                         <td class=""> {{$item->contactName}}</td>
-                                        <td class=""> {{$item->contactEmail}}</td>
+
+                                        @if($item->contactEmail!=null)
+                                            <td class=""> {{$item->contactEmail}}</td>
+                                        @else
+                                            <td class="">N/A</td>
+                                        @endif
                                         <td class=""> {{$item->contactDesignation}}</td>
                                         <td class=""> {{$item->contactNumber}}</td>
                                         <td class=""> {{$item->user->name}}</td>

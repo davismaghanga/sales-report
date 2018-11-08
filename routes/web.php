@@ -40,6 +40,7 @@ Route::group(['middleware'=>['auth','verified']],function (){
 
     Route::get('orderpage','UserController@orderpage');
     Route::get('add-to-cart/{id}','BookController@getAddToCart');
+    Route::get('add-five/{id}','BookController@getAddFiveToCart');
     Route::get('add-ten/{id}','BookController@getAddTenToCart');
     Route::get('add-hundred/{id}','BookController@getAdd100ToCart');
 
@@ -47,11 +48,13 @@ Route::group(['middleware'=>['auth','verified']],function (){
     Route::get('removeBook/{id}','BookController@getRemoveItem');
     Route::get('shopping-cart','BookController@getCart');
 
-    Route::get('checkoutpage','BookController@checkoutPage');
+//    Route::get('checkoutpage','BookController@checkoutPage');
     Route::post('checkoutpage','BookController@postCheckOut');
 
-    Route::post('getDiscount/NewPrice','BookController@getNewPrice');
+    Route::post('discount/post','BookController@getDiscount');
+    Route::post('courier/post','BookController@getCourier');
 
+    Route::post('goToCheckout/post','BookController@checkoutPage');
 //    Route::get('sendNotification','BookController@sendNotification');
 
 

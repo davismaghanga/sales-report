@@ -58,7 +58,9 @@
                                 value.orders:
                                 'None',
                             value.contactName,
-                            value.contactEmail,
+
+                            value.contactEmail!=null?value.contactEmail:'N/A',
+
                             value.contactDesignation,
                             value.contactNumber,
                             value.created_at,
@@ -211,7 +213,14 @@
                                             <td class=""> {{$institution->orders}}</td>
                                         @endif
                                         <td class=""> {{$institution->contactName}}</td>
-                                        <td class=""> {{$institution->contactEmail}}</td>
+
+
+                                        @if($institution->contactEmail==null)
+                                            <td class=""> Not Applicable</td>
+                                        @else
+                                            <td class=""> {{$institution->contactEmail}}</td>
+
+                                        @endif
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
                                         <td class=""> {{$institution->created_at}}</td>

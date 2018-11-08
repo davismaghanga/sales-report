@@ -116,7 +116,12 @@
                                         <td class=""> {{$ngo->region->region}}</td>
                                         <td class=""> {{$ngo->county->county}}</td>
                                         <td class=""> {{$ngo->contactName}}</td>
-                                        <td class=""> {{$ngo->contactEmail}}</td>
+
+                                        @if($ngo->contactEmail!=null)
+                                            <td class=""> {{$ngo->contactEmail}}</td>
+                                        @else
+                                            <td class="">N/A</td>
+                                        @endif
                                         <td class=""> {{$ngo->contactDesignation}}</td>
                                         <td class=""> {{$ngo->contactNumber}}</td>
                                         <td class=""> {{$ngo->user->name}}</td>

@@ -59,7 +59,9 @@
                            value.county.county,
                            value.subcounty.subcounty,
                            value.contactName,
-                           value.contactEmail,
+
+                           value.contactEmail==null? 'N/A':value.contactEmail,
+
                            value.contactDesignation,
                            value.contactNumber,
                            value.orders!=null ?
@@ -197,7 +199,12 @@
                                         <td class=""> {{$institution->county->county}}</td>
                                         <td class=""> {{$institution->subcounty->subcounty}}</td>
                                         <td class=""> {{$institution->contactName}}</td>
-                                        <td class=""> {{$institution->contactEmail}}</td>
+
+                                        @if($institution->contactEmail!=null)
+                                            <td class=""> {{$institution->contactEmail}}</td>
+                                        @else
+                                            <td class="">N/A</td>
+                                        @endif
                                         <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
 
