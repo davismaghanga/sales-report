@@ -116,7 +116,12 @@
                                         <td class=""> {{$pubsschool->region->region}}</td>
                                         <td class=""> {{$pubsschool->county->county}}</td>
                                         <td class=""> {{$pubsschool->contactName}}</td>
-                                        <td class=""> {{$pubsschool->contactEmail}}</td>
+
+                                        @if($pubsschool->contactEmail!=null)
+                                            <td class=""> {{$pubsschool->contactEmail}}</td>
+                                        @else
+                                            <td class="">N/A</td>
+                                        @endif
                                         <td class=""> {{$pubsschool->contactDesignation}}</td>
                                         <td class=""> {{$pubsschool->contactNumber}}</td>
                                         <td class=""> {{$pubsschool->user->name}}</td>

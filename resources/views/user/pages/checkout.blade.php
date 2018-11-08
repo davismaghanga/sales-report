@@ -31,7 +31,8 @@
 
                     <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
                         <h1> Checkout</h1>
-                        <h4> Your total: Kshs.{{$total}}</h4>
+                        <h2> Inclusive of VAT and Courier charges if any</h2>
+                        <h4> Your total fee to be paid is: Kshs.{{$total}}</h4>
 
                         <form action="{{url('checkoutpage')}}" method="post" class="form-horizontal form-label-left input_mask">
 
@@ -40,6 +41,10 @@
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
+
+                                        <input type="hidden" name="finalCost" value="{{$total}}">
+                                        <input type="hidden" name="percentageDiscount" value="{{$percentageDiscount}}">
+                                        <input type="hidden" name="courierIsChecked" value="{{$courierIsChecked}}">
                                         <label for="institution_name"> Name</label>
                                         <input type="text" class="form-control col-md-10" name="institution_name" required placeholder="Name of Institution">
                                     </div>
@@ -60,15 +65,6 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="discount"> Proposed Discount (%)</label>
-                                        <input type="number" class="form-control col-md-10" name="discount"  placeholder="Enter discount if any">
-                                    </div>
-                                </div>
-
-
 
                                 <div class="col-xs-12">
                                     <div class="form-group">

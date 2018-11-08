@@ -80,6 +80,7 @@
                                 <th class="column-title">Book type </th>
                                 <th class="column-title">Retail price exclusive vat </th>
                                 <th class="column-title">Add 1 to cart </th>
+                                <th class="column-title">Add 5 to cart </th>
                                 <th class="column-title">Add 10 to cart </th>
                                 <th class="column-title">Add 100 to cart </th>
                                 {{--<th class="column-title">Add 50 to cart </th>--}}
@@ -96,6 +97,7 @@
                                     <td class=""> {{$book->book_type}}</td>
                                     <td class=""> {{$book->price_excl_vat}}</td>
                                     <td class=""><a href="{{url('add-to-cart/'.$book->id)}}" role="button" class="btn btn-success"> Add </a></td>
+                                    <td class=""><a href="{{url('add-five/'.$book->id)}}" role="button" class="btn btn-success"> Add </a></td>
                                     <td class=""><a href="{{url('add-ten/'.$book->id)}}" role="button" class="btn btn-success"> Add </a></td>
                                     <td class=""><a href="{{url('add-hundred/'.$book->id)}}" role="button" class="btn btn-success"> Add </a></td>
                                     {{--<td class=""><a href="" role="button" class="btn btn-success"> Add 10</a></td>--}}

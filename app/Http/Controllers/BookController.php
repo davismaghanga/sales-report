@@ -29,6 +29,20 @@ class BookController extends Controller
         return redirect()->back()->with('status','Added to cart!');
     }
 
+    public function getAddFiveToCart(Request $request, $id)
+    {
+        $book=Book::find($id);
+        $oldCart=Session::has('cart') ? Session::get('cart'):null;
+        $cart= new Cart($oldCart);
+
+        //method within a method. This method is defined in the cart class
+        $cart->addFive($book,$book->id);
+
+        $request->session()->put('cart',$cart);
+//        dd($request->session()->get('cart'));
+        return redirect()->back()->with('status','5 Added to cart!');
+    }
+
     public function getAddTenToCart(Request $request,$id)
     {
         $book=Book::find($id);
@@ -114,7 +128,7 @@ class BookController extends Controller
 
     }
 
-    public function checkoutPage()
+    public function checkoutPage(Request $request)
     {
         if(!Session::has('cart'))
         {
@@ -125,8 +139,12 @@ class BookController extends Controller
 
         $oldCart=Session::get('cart');
         $cart=new Cart($oldCart);
+        $cart->totalPrice=$request->finalPrice;
         $total=$cart->totalPrice;
-        return view('user.pages.checkout',compact('total','counties'));
+        $percentageDiscount=$request->percentageDiscount;
+        $courierIsChecked=$request->courierIsChecked;
+
+        return view('user.pages.checkout',compact('total','counties','percentageDiscount','courierIsChecked'));
     }
 
     public function postCheckOut(Request $request)
@@ -138,13 +156,16 @@ class BookController extends Controller
         $oldCart =Session::get('cart');
         $cart=new Cart($oldCart);
         $order=new Order();
+        $cart->totalPrice=$request->finalCost;
+
+        $order->pdiscount=$request->percentageDiscount;
+        $order->courierIsChecked=$request->courierIsChecked;
         $order->cart=serialize($cart);
         $order->institution_name=$request->institution_name;
         $order->type=$request->type;
         $order->county_id=$request->county_id;
         $order->subcounty_id=$request->subcounty_id;
         $order->contactName=$request->contactName;
-        $order->discount=$request->discount;
         $order->contactNumber=$request->contactNumber;
         $order->contactEmail=$request->contactEmail;
 
@@ -152,8 +173,6 @@ class BookController extends Controller
         $order->save();
 //        dd($order);
         Session::forget('cart');
-
-//        return redirect('sendNotification');
         return $this->sendNotification();
 
 
@@ -178,5 +197,44 @@ class BookController extends Controller
         $this->dispatch(new NewOrderJob());
         return redirect('orderpage')->with('status','Order Submitted Successfully!');
 
+    }
+
+    public function getDiscount(Request $request)
+    {
+        $price_before_disc=$request->totalPrice;
+
+        if ($request->discount!=0 || $request->discount!=null)
+        {
+            $discount=(($request->discount)/100)*$price_before_disc;
+            $price_after_disc=$price_before_disc-$discount;
+        }
+        else{
+           $price_after_disc= $price_before_disc;
+        }
+        $percentageDiscount=$request->discount;
+
+
+        return view('user.pages.checkCourier',compact('price_after_disc','percentageDiscount'));
+//        dd($request->totalPrice);
+    }
+
+    public function getCourier(Request $request)
+    {
+        $percentageDiscount=$request->percentageDiscount;
+        $courierIsChecked=$request->courier;
+        $taxedValue=1.16*$request->discounted_price;
+//        dd($taxedValue);
+//        dd($request->courier);
+        if ($request->courier==true)
+        {
+            $finalPrice=$taxedValue+300;
+
+        }
+        else{
+            $finalPrice=$taxedValue;
+
+        }
+
+        return view('user.pages.finalPrice',compact('finalPrice','percentageDiscount','courierIsChecked'));
     }
 }

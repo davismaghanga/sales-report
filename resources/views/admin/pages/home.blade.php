@@ -123,8 +123,14 @@
                                         <td class=""> {{$institution->county->county}}</td>
                                         <td class=""> {{$institution->subcounty->subcounty}}</td>
                                         <td class=""> {{$institution->contactName}}</td>
+
+                                        @if($institution->contactEmail!=null)
                                         <td class=""> {{$institution->contactEmail}}</td>
-                                        <td class=""> {{$institution->contactDesignation}}</td>
+                                        @else
+                                            <td class="">N/A</td>
+                                        @endif
+
+                                            <td class=""> {{$institution->contactDesignation}}</td>
                                         <td class=""> {{$institution->contactNumber}}</td>
 
 

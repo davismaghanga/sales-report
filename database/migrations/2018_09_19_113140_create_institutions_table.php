@@ -25,11 +25,10 @@ class CreateInstitutionsTable extends Migration
             $table->integer('county_id');
             $table->integer('subcounty_id');
             $table->string('contactName');
-            $table->string('contactEmail');
+            $table->string('contactEmail')->nullable();
             $table->string('contactDesignation');
             $table->string('contactNumber');
             $table->integer('user_id');
-//            $table->integer('booklist_id');
             $table->timestamps();
         });
     }
