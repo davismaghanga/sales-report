@@ -220,20 +220,41 @@ class BookController extends Controller
 
     public function getCourier(Request $request)
     {
+
+//        dd($request->courier);
+        $taxedValue=1.16*$request->discounted_price;
+
         $percentageDiscount=$request->percentageDiscount;
         $courierIsChecked=$request->courier;
-        $taxedValue=1.16*$request->discounted_price;
-//        dd($taxedValue);
-//        dd($request->courier);
-        if ($request->courier==true)
-        {
-            $finalPrice=$taxedValue+300;
+
+//        dd($courierIsChecked);
+
+        if($courierIsChecked==null){
+            $courierIsChecked=0;
+            $finalPrice=$taxedValue;
+
+//            $
 
         }
         else{
-            $finalPrice=$taxedValue;
+            $courierIsChecked=1;
+         $finalPrice=$taxedValue+300;
 
         }
+
+
+//        dd($courierIsChecked);
+//        dd($taxedValue);
+//        dd($request->courier);
+//        if ($request->courier!=null)
+//        {
+//            $finalPrice=$taxedValue+300;
+//
+//        }
+//        else{
+//            $finalPrice=$taxedValue;
+//
+//        }
 
         return view('user.pages.finalPrice',compact('finalPrice','percentageDiscount','courierIsChecked'));
     }
