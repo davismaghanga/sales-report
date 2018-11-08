@@ -23,7 +23,7 @@
                                 <input type="hidden" name="percentageDiscount" value="{{$percentageDiscount}}">
 
                                 <label for="" >Courier charges:</label>
-                                <input type="checkbox" name="courier" id="courier" value="1">
+                                <input type="checkbox" name="courier" id="courier" value=1>
 
                                 <br>
 
