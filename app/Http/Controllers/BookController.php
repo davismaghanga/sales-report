@@ -222,6 +222,7 @@ class BookController extends Controller
     {
         $percentageDiscount=$request->percentageDiscount;
         $courierIsChecked=$request->courier;
+//        dd($courierIsChecked);
         $taxedValue=1.16*$request->discounted_price;
 //        dd($taxedValue);
 //        dd($request->courier);

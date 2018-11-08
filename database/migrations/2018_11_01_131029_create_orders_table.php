@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pdiscount')->nullable();
-            $table->boolean('courierIsChecked')->nullable();
+            $table->boolean('courierIsChecked')->default(1);
             $table->integer('rep_id');
             $table->text('cart');
             $table->string('institution_name');
