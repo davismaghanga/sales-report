@@ -61,6 +61,10 @@
     <link href="{{asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{asset('css/mycss/davis.css')}}">
+
+
+
 </head>
 
 <body class="nav-md">
@@ -75,8 +79,8 @@
 
 <div class="container body">
     <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
+        <div class="col-md-3 left_col left-column">
+            <div class="left_col scroll-view ">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="#" class="site_title"><i class="fa fa-book"></i> <span>Storymoja</span></a>
                 </div>

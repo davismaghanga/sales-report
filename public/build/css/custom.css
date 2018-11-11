@@ -146,6 +146,16 @@ html , body{
 .left_col {
     background: #2A3F54
 }
+
+
+
+
+
+
+
+
+
+
 .nav-sm .container.body .col-md-3.left_col {
     min-height: 100%;
     width: 70px;
@@ -4253,3 +4263,28 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+
+
+
+.vertical-menu {
+    width: auto;
+    height: auto;
+    overflow-y: auto !important;
+}
+
+.vertical-menu a {
+    /*background-color: #eee;*/
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: deeppink;
+}
+
+.vertical-menu a.active {
+    /*background-color: #4CAF50;*/
+    color: white;
+}
