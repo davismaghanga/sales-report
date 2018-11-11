@@ -59,7 +59,6 @@
     <!-- Custom Theme Style -->
     <link href="{{asset('build/css/custom.min.css')}}" rel="stylesheet">
 
-    {{--<script src="//code.tidio.co/h5uxgrvyakmq7nvaayqecpy4i5eorvfm.js"></script>--}}
 
 </head>
 
@@ -73,7 +72,7 @@
 
 <div class="container body">
     <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col ">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
                     {{--<a href="#" class="site_title"><img src="{{asset('images/Logo.jpg')}}"> <span>Storymoja</span></a>--}}
