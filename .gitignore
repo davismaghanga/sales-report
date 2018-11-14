@@ -1,3 +1,8 @@
+/public/Booklists/*
+/public/Documents/*
+/public/images/*
+/public/KYC/*
+/public/Reports/*
 /node_modules
 /public/hot
 /public/storage

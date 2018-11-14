@@ -174,6 +174,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin','verified']],funct
     //delete book
     Route::get('/delete/book/{id}','AdminController@deleteBook');
 
+    Route::get('/addpage','BookController@addpage');
+
+    //add book
+    Route::post('/addbook','BookController@addBook');
+
     //orders
 
     Route::get('orders','AdminController@getOrders');

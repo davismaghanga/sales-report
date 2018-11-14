@@ -77,15 +77,17 @@
 @endif
 
 
+
 <div class="container body">
     <div class="main_container">
-        <div class="col-md-3 left_col left-column">
-            <div class="left_col scroll-view ">
+        <div class="col-md-3  left_col ">
+            <div class="left_col scroll-view  ">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="#" class="site_title"><i class="fa fa-book"></i> <span>Storymoja</span></a>
                 </div>
 
                 <div class="clearfix"></div>
+
 
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
@@ -104,10 +106,10 @@
 
             <!-- sidebar menu -->
 
-                <div   id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
+                <div   id="sidebar-menu" class="main_menu_side hidden-print main_menu ">
+                    <div class="menu_section ">
                         <h3>General</h3>
-                        <ul class="nav side-menu">
+                        <ul class="nav side-menu ">
                             <li><a href="{{route('home')}}"><i class="fa fa-home"></i> HOME</a>
 
                             </li>
@@ -196,6 +198,7 @@
                             </li>
 
                             <li><a href="{{url('admin/inventory')}}" > <i class="fa fa-book"></i>Storymoja Books </a></li>
+                            <li><a href="{{url('admin/addpage')}}" > <i class="fa fa-plus"></i>Add book </a></li>
                             <li><a href="{{url('admin/orders')}}" > <i class="fa fa-reorder"></i>Orders </a></li>
                         </ul>
                     </div>
@@ -243,10 +246,13 @@
                 </nav>
             </div>
         </div>
+
         <!-- /top navigation -->
 
         <!-- page content -->
     @yield('content')
+
+
     <!-- /page content -->
 
         <!-- footer content -->
