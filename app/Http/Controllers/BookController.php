@@ -258,4 +258,22 @@ class BookController extends Controller
 
         return view('user.pages.finalPrice',compact('finalPrice','percentageDiscount','courierIsChecked'));
     }
+
+    public function addpage()
+    {
+        return view('admin.pages.addbook');
+    }
+
+    public function addBook(Request $request)
+    {
+        $book = new Book();
+        $book->title=$request->title;
+        $book->intended_age=$request->intended_age;
+        $book->book_type=$request->book_type;
+        $book->price_excl_vat=$request->price_excl_vat;
+        $book->save();
+        return redirect('admin/inventory')->with('status','Book Added!');
+
+
+    }
 }
