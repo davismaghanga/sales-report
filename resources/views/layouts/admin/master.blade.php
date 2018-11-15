@@ -63,6 +63,9 @@
 
     <link rel="stylesheet" href="{{asset('css/mycss/davis.css')}}">
 
+    <style>
+
+    </style>
 
 
 </head>

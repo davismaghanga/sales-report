@@ -27,6 +27,12 @@
             $('#datatable').DataTable();
         })
 
+        function openDeleteModale(id){
+        var url='{{url('admin/delete/book')}}'+"/"+id
+        $('#delete-modal').modal('show');
+        $('#delete-link').attr('href',url);
+
+        }
     </script>
 @endsection
 
@@ -35,6 +41,28 @@
 @section('content')
 
     <div class="right_col" role="main">
+        <div  id="delete-modal"   class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Delete book</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <p>Are you sure?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="" id="delete-link"  role="button" class="btn btn-primary">Delete Book</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="">
 
             <div class="row">
@@ -131,7 +159,8 @@
                                     <td class=""> {{$book->intended_age}}</td>
                                     <td class=""> {{$book->book_type}}</td>
                                     <td class=""> {{$book->price_excl_vat}}</td>
-                                    <td class=""><a href="{{url('admin/delete/book/'.$book->id)}}"> <i class="fa fa-trash"></i></a></td>
+                                    {{--<td class=""><a href="{{url('admin/delete/book/'.$book->id)}}"> <i class="fa fa-trash"></i></a></td>--}}
+                                    <td class=""> <button type="button" class="btn btn-primary"  onclick="openDeleteModale({{$book->id}})"  > <i class="fa fa-trash"></i></button></td>
                                 </tr>
                             @endforeach
 
