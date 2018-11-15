@@ -3,6 +3,27 @@
 @section('content')
 
     <div class="right_col" role="main">
+        <div id="delete-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Remove admin </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="" id="delete-link" role="button" class="btn btn-primary">Remove</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="">
             <div class="page-title">
                 <div class="title_left">
@@ -61,6 +82,7 @@
                                     <tr class="headings">
 
                                         <th class="column-title">Regional Manager's Name </th>
+                                        <th class="column-title">Email </th>
                                         <th class="column-title no-link last"><span class="nobr">Action</span>
                                         </th>
                                     </tr>
@@ -73,10 +95,13 @@
                                             {{--@foreach($user->institutions as $institution)--}}
                                             @if(Auth::user()->id == $regional_manager->id)
                                                 <td class=""> {{$regional_manager->name}}</td>
+                                                <td class=""> {{$regional_manager->email}}</td>
                                                 <td class=""> <a> <i class="fa fa-user-times"></i> </a></td>
                                                 @else
                                                 <td class=""> {{$regional_manager->name}}</td>
-                                                <td class=""> <a href="{{url('admin/delete/admin',$regional_manager->id)}}"> <i class="fa fa-trash"></i> </a></td>
+                                                <td class=""> {{$regional_manager->email}}</td>
+                                                <td class=""> <button type="button" class="btn btn-primary" onclick="openDeleteModal({{$regional_manager->id}})"> <i class="fa fa-trash"></i> </button></td>
+                                                {{--<td class=""> <a href="{{url('admin/delete/admin',$regional_manager->id)}}"> <i class="fa fa-trash"></i> </a></td>--}}
                                             @endif
 
 
@@ -97,4 +122,16 @@
     </div>
 
 @endsection
+
+@section('scripts')
+    <script>
+        function openDeleteModal(id) {
+            var url = '{{url('admin/delete/admin')}}'+"/"+id
+
+            $('#delete-modal').modal('show');
+            $('#delete-link').attr('href',url);
+
+        }
+    </script>
+    @endsection
 

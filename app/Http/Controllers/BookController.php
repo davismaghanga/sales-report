@@ -178,26 +178,26 @@ class BookController extends Controller
 
     }
 
-//    public function sendNotification()
-//    {
-//
-//        $when=now()->addSeconds(10);
-//        $users=User::where('user_type',1)->get();
-//        foreach ($users as $user)
-//        {
-//            $user->notify (   (new OrderNotification())->delay($when)  );
-//
-//        }
-//        return redirect('orderpage')->with('status','Order Submitted Successfully!');
-//
-//    }
-
     public function sendNotification()
     {
-        $this->dispatch(new NewOrderJob());
+
+//        $when=now()->addSeconds(10);
+        $users=User::where('user_type',1)->get();
+        foreach ($users as $user)
+        {
+            $user->notify(new OrderNotification())  ;
+
+        }
         return redirect('orderpage')->with('status','Order Submitted Successfully!');
 
     }
+
+//    public function sendNotification()
+//    {
+//        $this->dispatch(new NewOrderJob());
+//        return redirect('orderpage')->with('status','Order Submitted Successfully!');
+//
+//    }
 
     public function getDiscount(Request $request)
     {
