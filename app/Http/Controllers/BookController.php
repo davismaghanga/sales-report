@@ -170,6 +170,9 @@ class BookController extends Controller
         $order->contactEmail=$request->contactEmail;
 
         $order->rep_id=Auth::id();
+
+//                dd($order);
+
         $order->save();
 //        dd($order);
         Session::forget('cart');
@@ -181,7 +184,6 @@ class BookController extends Controller
     public function sendNotification()
     {
 
-//        $when=now()->addSeconds(10);
         $users=User::where('user_type',1)->get();
         foreach ($users as $user)
         {
@@ -192,12 +194,6 @@ class BookController extends Controller
 
     }
 
-//    public function sendNotification()
-//    {
-//        $this->dispatch(new NewOrderJob());
-//        return redirect('orderpage')->with('status','Order Submitted Successfully!');
-//
-//    }
 
     public function getDiscount(Request $request)
     {
